@@ -8,19 +8,19 @@ import java.io.File
 import java.lang.StringBuilder
 import java.time.Instant
 
-data class ParserResult(val items: Collection<Item>, val auctions: List<Auction>)
+enum class Language {FRENCH, ENGLISH}
+data class ParserResult(val language: Language, val items: Collection<Item>, val auctions: List<Auction>)
 data class AuctionatorSnapshot(val snapshot_at: Long, val auctions: List<AuctionatorAuction>)
 data class AuctionatorAuction(val q: Long, val s: Long, val b: Long, val i: Long, val n: String)
 
 fun main(args: Array<String>) {
-    
-    val filePath = args[0]
+    val language = Language.valueOf(args[0])
+    val filePath = args[1]
 
-    parseAuctionerFile(filePath)
-
+    parseAuctionerFile(filePath, language)
 }
 
-public fun parseAuctionerFile(filePath: String): ParserResult {
+public fun parseAuctionerFile(filePath: String, language: Language): ParserResult {
     val lines = File(filePath).readLines()
 
     val snapshot = StringBuilder()
@@ -68,12 +68,19 @@ public fun parseAuctionerFile(filePath: String): ParserResult {
     val o = Gson().fromJson<AuctionatorSnapshot>(s, AuctionatorSnapshot::class.java)
 
     val timestamp = Instant.ofEpochSecond(o.snapshot_at)
-    val items = o.auctions.map { Item(it.i, it.n, null) }.toSet()
+    val items = o.auctions.map { createItem(it, language) }.toSet()
     val auctions = o.auctions.map { Auction(it.i, it.q, it.s, it.b, timestamp) }
-    val result = ParserResult(items, auctions)
+    val result = ParserResult(language, items, auctions)
     
     val ss = GsonBuilder().setPrettyPrinting().create().toJson(result)
     File("result-${timestamp.toEpochMilli()}.json").writeText(ss)
     
     return result 
+}
+
+private fun createItem(it: AuctionatorAuction, language: Language): Item {
+     return when(language) {
+         Language.FRENCH -> Item(it.i, it.n, null)
+         Language.ENGLISH -> Item(it.i, null, it.n)
+     }
 }
