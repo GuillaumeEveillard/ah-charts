@@ -1,5 +1,4 @@
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import parser.ParserResult
 import java.io.File
@@ -11,9 +10,9 @@ import java.time.ZoneId
 data class Item(val id: Long, val frenchName: String?, val englishName: String?) {
     fun complete() = frenchName != null && englishName != null
 }
-data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyout: Long, val timestamp: Instant) {
+data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyout: Long?, val timestamp: Instant) {
     fun bidByUnit() = bid.toDouble() / quantity.toDouble()
-    fun buyoutByUnit() = buyout.toDouble() / quantity.toDouble()
+    fun buyoutByUnit() = if(buyout == null) null else  buyout.toDouble() / quantity.toDouble()
 }
 data class WishListItem(val id: Long, val price: Long?)
 data class WishListItemConfig(val name: String, val price: Long? = null)
@@ -81,12 +80,15 @@ class ItemAuctions(auctions: List<Auction>) {
 
     fun bestBuyoutPerDay() : Map<LocalDate, Double> {
         return auctionsPerTimestamp.entries
-            .groupBy({k -> k.key.atZone(ZoneId.systemDefault()).toLocalDate()},  { v -> v.value})
-            .mapValues { it.value.flatten().map { a -> a.buyoutByUnit() }.min()!! }
+            .groupBy({ k -> k.key.atZone(ZoneId.systemDefault()).toLocalDate()},  { v -> v.value})
+            .mapValues { it.value.flatten().mapNotNull { a -> a.buyoutByUnit() }.min() }
+            .filterValues { it != null } as Map<LocalDate, Double>
     }
 
     fun bestBuyout(): Map<Instant, Double> {
-        return auctionsPerTimestamp.mapValues { a -> a.value.map { a -> a.buyoutByUnit() }.min() !! }
+        return auctionsPerTimestamp
+                .mapValues { a -> a.value.mapNotNull { a -> a.buyoutByUnit() }.min() }
+                .filterValues { it != null } as Map<Instant, Double>
     }
 
 }

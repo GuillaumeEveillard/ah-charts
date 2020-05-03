@@ -23365,7 +23365,7 @@
       "itemId": 11018,
       "quantity": 23,
       "bid": 37145,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -25575,7 +25575,7 @@
       "itemId": 2589,
       "quantity": 20,
       "bid": 3656,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -25585,7 +25585,7 @@
       "itemId": 2589,
       "quantity": 14,
       "bid": 2000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -44315,7 +44315,7 @@
       "itemId": 13017,
       "quantity": 1,
       "bid": 110000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -44345,7 +44345,7 @@
       "itemId": 15232,
       "quantity": 1,
       "bid": 10000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -60005,7 +60005,7 @@
       "itemId": 5633,
       "quantity": 5,
       "bid": 12500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -60015,7 +60015,7 @@
       "itemId": 5633,
       "quantity": 5,
       "bid": 12500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -60025,7 +60025,7 @@
       "itemId": 5633,
       "quantity": 5,
       "bid": 12500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -75625,7 +75625,7 @@
       "itemId": 8190,
       "quantity": 1,
       "bid": 405929,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -80985,7 +80985,7 @@
       "itemId": 10051,
       "quantity": 1,
       "bid": 9999,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -81075,7 +81075,7 @@
       "itemId": 10051,
       "quantity": 1,
       "bid": 9999,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -81085,7 +81085,7 @@
       "itemId": 10051,
       "quantity": 1,
       "bid": 9999,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -81435,7 +81435,7 @@
       "itemId": 10333,
       "quantity": 1,
       "bid": 7571,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -82825,7 +82825,7 @@
       "itemId": 10285,
       "quantity": 2,
       "bid": 2000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -82995,7 +82995,7 @@
       "itemId": 14227,
       "quantity": 5,
       "bid": 15000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -84755,7 +84755,7 @@
       "itemId": 11754,
       "quantity": 1,
       "bid": 3000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -84765,7 +84765,7 @@
       "itemId": 11732,
       "quantity": 1,
       "bid": 2000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -84785,7 +84785,7 @@
       "itemId": 18332,
       "quantity": 1,
       "bid": 2000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -95705,7 +95705,7 @@
       "itemId": 10305,
       "quantity": 1,
       "bid": 150,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -103535,7 +103535,7 @@
       "itemId": 4408,
       "quantity": 1,
       "bid": 243,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -103805,7 +103805,7 @@
       "itemId": 19814,
       "quantity": 1,
       "bid": 40100,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -105965,7 +105965,7 @@
       "itemId": 13136,
       "quantity": 1,
       "bid": 82184,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -108535,7 +108535,7 @@
       "itemId": 2592,
       "quantity": 19,
       "bid": 940,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -114475,7 +114475,7 @@
       "itemId": 13130,
       "quantity": 1,
       "bid": 37597,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -116775,7 +116775,7 @@
       "itemId": 4553,
       "quantity": 1,
       "bid": 616,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -120315,7 +120315,7 @@
       "itemId": 5634,
       "quantity": 1,
       "bid": 112,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -120325,7 +120325,7 @@
       "itemId": 5634,
       "quantity": 1,
       "bid": 112,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -120335,7 +120335,7 @@
       "itemId": 5634,
       "quantity": 1,
       "bid": 112,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125775,7 +125775,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125815,7 +125815,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125825,7 +125825,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125835,7 +125835,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125865,7 +125865,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125925,7 +125925,7 @@
       "itemId": 4338,
       "quantity": 20,
       "bid": 7500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -125965,7 +125965,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -126015,157 +126015,7 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 4306,
-      "quantity": 20,
-      "bid": 4500,
-      "buyout": 0,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 20404,
-      "quantity": 1,
-      "bid": 16910,
-      "buyout": 17800,
-      "timestamp": {
-        "seconds": 1588459572,
-        "nanos": 0
-      }
-    },
-    {
-      "itemId": 4306,
-      "quantity": 20,
-      "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -126245,7 +126095,157 @@
       "itemId": 4306,
       "quantity": 20,
       "bid": 4500,
-      "buyout": 0,
+      "buyout": null,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 4306,
+      "quantity": 20,
+      "bid": 4500,
+      "buyout": null,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 20404,
+      "quantity": 1,
+      "bid": 16910,
+      "buyout": 17800,
+      "timestamp": {
+        "seconds": 1588459572,
+        "nanos": 0
+      }
+    },
+    {
+      "itemId": 4306,
+      "quantity": 20,
+      "bid": 4500,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -127675,7 +127675,7 @@
       "itemId": 5631,
       "quantity": 5,
       "bid": 5000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -127685,7 +127685,7 @@
       "itemId": 5631,
       "quantity": 5,
       "bid": 5000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -127695,7 +127695,7 @@
       "itemId": 5631,
       "quantity": 5,
       "bid": 5000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130165,7 +130165,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130175,7 +130175,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130185,7 +130185,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130225,7 +130225,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130245,7 +130245,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130255,7 +130255,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -130275,7 +130275,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -131105,7 +131105,7 @@
       "itemId": 11176,
       "quantity": 12,
       "bid": 21600,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -131415,7 +131415,7 @@
       "itemId": 2732,
       "quantity": 1,
       "bid": 562,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -133165,7 +133165,7 @@
       "itemId": 12054,
       "quantity": 1,
       "bid": 21255,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -137125,7 +137125,7 @@
       "itemId": 7912,
       "quantity": 2,
       "bid": 300,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -149305,7 +149305,7 @@
       "itemId": 2589,
       "quantity": 20,
       "bid": 390,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -150935,7 +150935,7 @@
       "itemId": 2447,
       "quantity": 19,
       "bid": 285,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -153055,7 +153055,7 @@
       "itemId": 20668,
       "quantity": 1,
       "bid": 150000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -153345,7 +153345,7 @@
       "itemId": 20671,
       "quantity": 1,
       "bid": 500000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -153395,7 +153395,7 @@
       "itemId": 20668,
       "quantity": 1,
       "bid": 80000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -155985,7 +155985,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -155995,7 +155995,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156015,7 +156015,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156025,7 +156025,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156055,7 +156055,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156285,7 +156285,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156305,7 +156305,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156355,7 +156355,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156375,7 +156375,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
@@ -156395,7 +156395,7 @@
       "itemId": 14047,
       "quantity": 20,
       "bid": 12000,
-      "buyout": 0,
+      "buyout": null,
       "timestamp": {
         "seconds": 1588459572,
         "nanos": 0
