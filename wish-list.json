@@ -6,7 +6,8 @@
     "name": "Elixir de défense supérieure"
   },
   {
-    "name": "Potion de Bouclier de pierre inférieure"
+    "name": "Potion de Bouclier de pierre inférieure",
+    "price": 2000
   },
   {
     "name": "Potion de Bouclier de pierre supérieure"
@@ -14,5 +15,37 @@
   {
     "name": "Rhum de Rumsey label noir",
     "price": 5000
+  },
+  {
+    "name": "Stonescale Eel"
+  },
+  {
+    "name": "Stonescale Oil"
+  },
+  {
+    "name": "Greater Nature Protection Potion"
+  },
+  {
+    "name": "Nature Protection Potion"
+  },
+  {
+    "name": "Elemental Fire"
+  },
+  {
+    "name": "Mooncloth"
+  },
+  {
+    "name": "Felcloth",
+    "price": 20000
+  },
+  {
+    "name": "Dense Stone",
+    "price": 1200
+  },
+  {
+    "name": "Dense Grinding Stone"
+  },
+  {
+    "name": "Dense Sharpening Stone"
   }
 ]

@@ -1,4 +1,6 @@
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import parser.ParserResult
 import java.io.File
 import java.lang.IllegalArgumentException
@@ -15,7 +17,23 @@ data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyo
 }
 data class WishListItem(val id: Long, val price: Long?)
 data class WishListItemConfig(val name: String, val price: Long? = null)
-data class Database(val items: Collection<Item>, val auctions: List<Auction>)
+data class Database(val items: Collection<Item>, val auctions: List<Auction>) {
+    val itemById = items.map { it.id to it }
+    fun findItemByName(name: String) : Item? {
+        return items.find { it.frenchName == name || it.englishName == name }
+    }
+}
+
+fun loadWishList(database: Database) : Collection<WishListItem> {
+    val json = File("wish-list.json").readText()
+    val t: TypeToken<List<WishListItemConfig>> = object : TypeToken<List<WishListItemConfig>>() {}
+    val w = Gson().fromJson<List<WishListItemConfig>>(json, t.type)
+    
+    return w.mapNotNull {
+        val item = database.findItemByName(it.name)
+        if (item == null) null else WishListItem(item.id, it.price)
+    }
+}
 
 fun main(args: Array<String>) {
 

@@ -25,6 +25,7 @@ import java.time.format.DateTimeFormatter
 fun main() {
     val parsingResult = loadResultFiles()
     val analyzer = Analyzer(parsingResult.auctions)
+    val wishList = loadWishList(parsingResult)
 
     val server = embeddedServer(Netty, port = 9898) {
         install(ContentNegotiation) {
@@ -46,9 +47,12 @@ fun main() {
         }
         
         routing {
+            get("wish") {
+                call.respond(HttpStatusCode.OK, wishList)
+            }
             route("/items") {
                 get {
-
+                    call.respond(HttpStatusCode.OK, parsingResult.items)
                 }
             }
 
