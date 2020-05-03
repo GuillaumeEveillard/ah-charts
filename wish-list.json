@@ -7,20 +7,22 @@
   },
   {
     "name": "Potion de Bouclier de pierre inférieure",
-    "price": 2000
+    "buyPrice": 2000
   },
   {
     "name": "Potion de Bouclier de pierre supérieure"
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "price": 5000
+    "buyPrice": 5000
   },
   {
-    "name": "Stonescale Eel"
+    "name": "Stonescale Eel",
+    "buyPrice": 6000
   },
   {
-    "name": "Stonescale Oil"
+    "name": "Stonescale Oil",
+    "buyPrice": 6000
   },
   {
     "name": "Greater Nature Protection Potion"
@@ -29,23 +31,39 @@
     "name": "Nature Protection Potion"
   },
   {
-    "name": "Elemental Fire"
+    "name": "Elemental Fire",
+    "sellPrice": 30000
   },
   {
-    "name": "Mooncloth"
+    "name": "Mooncloth",
+    "sellPrice": 220000
   },
   {
     "name": "Felcloth",
-    "price": 20000
+    "buyPrice": 20000
   },
   {
     "name": "Dense Stone",
-    "price": 1200
+    "buyPrice": 1000
   },
   {
     "name": "Dense Grinding Stone"
   },
   {
     "name": "Dense Sharpening Stone"
+  }
+,
+  {
+    "name": "Free Action Potion",
+    "buyPrice": 16000
+  },
+  
+  {
+    "_comment": "For FAP",
+    "name": "Blackmouth Oil"
+  },
+  {
+    "_comment": "For FAP",
+    "name": "Stranglekelp"
   }
 ]

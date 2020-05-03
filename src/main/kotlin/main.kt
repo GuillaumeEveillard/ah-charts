@@ -14,8 +14,8 @@ data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyo
     fun bidByUnit() = bid.toDouble() / quantity.toDouble()
     fun buyoutByUnit() = if(buyout == null) null else  buyout.toDouble() / quantity.toDouble()
 }
-data class WishListItem(val id: Long, val price: Long?)
-data class WishListItemConfig(val name: String, val price: Long? = null)
+data class WishListItem(val id: Long, val buyPrice: Long?, val sellPrice: Long?)
+data class WishListItemConfig(val name: String, val buyPrice: Long? = null, val sellPrice: Long? = null)
 data class Database(val items: Collection<Item>, val auctions: List<Auction>) {
     val itemById = items.map { it.id to it }
     fun findItemByName(name: String) : Item? {
@@ -30,7 +30,7 @@ fun loadWishList(database: Database) : Collection<WishListItem> {
     
     return w.mapNotNull {
         val item = database.findItemByName(it.name)
-        if (item == null) null else WishListItem(item.id, it.price)
+        if (item == null) null else WishListItem(item.id, it.buyPrice, it.sellPrice)
     }
 }
 
