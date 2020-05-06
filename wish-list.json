@@ -18,16 +18,17 @@
   },
   {
     "name": "Stonescale Eel",
-    "buyPrice": 6000
+    "buyPrice": 7500
   },
   {
     "name": "Stonescale Oil",
-    "buyPrice": 6000
+    "buyPrice": 7500
   },
   {
     "name": "Greater Nature Protection Potion"
   },
   {
+    "_comment": "Craft pour moins de 30 pa",
     "name": "Nature Protection Potion"
   },
   {
@@ -47,23 +48,44 @@
     "buyPrice": 1000
   },
   {
-    "name": "Dense Grinding Stone"
-  },
-  {
-    "name": "Dense Sharpening Stone"
-  }
-,
-  {
+    "_comment": "Craft pour 1po30",
     "name": "Free Action Potion",
-    "buyPrice": 16000
-  },
-  
-  {
-    "_comment": "For FAP",
-    "name": "Blackmouth Oil"
+    "buyPrice": 10000,
+    "sellPrice": 18000
   },
   {
     "_comment": "For FAP",
-    "name": "Stranglekelp"
+    "name": "Oily Blackmouth",
+    "buyPrice": 2000
+  },
+  {
+    "_comment": "For FAP",
+    "name": "Blackmouth Oil",
+    "buyPrice": 4000
+  },
+  {
+    "_comment": "For FAP",
+    "name": "Stranglekelp",
+    "buyPrice": 2000
+  },
+  {
+    "_comment": "For Elixir de Défense excellente",
+    "name": "Soleillette",
+    "buyPrice": 2000
+  },
+  {
+    "name": "Terre élémentaire",
+    "buyPrice": 35000
+  },
+  {
+    "name": "Feuillerêve",
+    "buyPrice": 6000
+  },
+  {
+    "name": "Tender Wolf Meat",
+    "buyPrice": 1000
+  },
+  {
+    "name": "Vietérule"
   }
 ]
