@@ -60,8 +60,6 @@ public fun parseAuctionerFile(filePath: String, language: Language): ParserResul
                 snapshot.append("{")
             }
         }
-
-
     }
 
     val s = snapshot.toString()

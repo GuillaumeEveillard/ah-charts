@@ -6,6 +6,8 @@ import java.lang.IllegalArgumentException
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.util.*
+import kotlin.math.max
 
 data class Item(val id: Long, val frenchName: String?, val englishName: String?) {
     fun complete() = frenchName != null && englishName != null
@@ -91,6 +93,34 @@ class ItemAuctions(auctions: List<Auction>) {
                 .filterValues { it != null } as Map<Instant, Double>
     }
 
+    fun bestAverageBuyout(n: Long): Map<Instant, Double> {
+        return auctionsPerTimestamp
+                .mapValues { a -> bestAverageBuyout(a.value, n) }
+                .filterValues { it != null } as Map<Instant, Double>
+               
+    }
+    
+    private fun bestAverageBuyout(auctions: Collection<Auction>, n: Long) : Double? {
+        val avgPrice = auctions
+                .filter { it.buyoutByUnit() != null }
+                .map { AveragePrice(it.buyoutByUnit()!!, it.quantity) }
+                .sortedBy { it.price }
+                .reduce { acc, pair -> acc.addPrice(pair.price, pair.quantity, n) }
+        return if (avgPrice.quantity < n) null else avgPrice.price   
+    }
+
+}
+
+data class AveragePrice(val price: Double, val quantity: Long) {
+    fun addPrice(price: Double, quantity: Long, limit: Long) : AveragePrice{
+        if(this.quantity >= limit) {
+            return this
+        } else {
+            val totalQuantity = max(this.quantity + quantity, limit)
+            val avgPrice = (this.price * this.quantity + price*(totalQuantity - this.quantity)) / totalQuantity
+            return AveragePrice(avgPrice, this.quantity + quantity)
+        }
+    }
 }
 
 class Analyzer(val auctions: Collection<Auction>) {
@@ -105,6 +135,10 @@ class Analyzer(val auctions: Collection<Auction>) {
 //            x
 //        }
 //
+    fun latestBestBuyout(itemId: Long) : Double {
+        return bestBuyout(itemId).toSortedMap().values.last()
+    }
+    
     fun bestBuyout(itemId: Long) : Map<Instant, Double> {
         val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
         return auctions.bestBuyout()
@@ -113,5 +147,10 @@ class Analyzer(val auctions: Collection<Auction>) {
     fun bestBuyoutPerDay(itemId: Long) : Map<LocalDate, Double> {
         val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
        return auctions.bestBuyoutPerDay()
+    }
+
+    fun bestAverageBuyout(itemId: Long, n: Long) : Map<Instant, Double> {
+        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
+        return auctions.bestAverageBuyout(n)
     }
 }
