@@ -1,7 +1,9 @@
 [
   {
     "name": "Elixir de défense excellente",
-    "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal"
+    "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal",
+    "buyPrice": 20000,
+    "sellPrice": 32500
   },
   {
     "name": "Elixir de défense supérieure",
@@ -21,7 +23,7 @@
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "buyPrice": 5000
+    "buyPrice": 4500
   },
   {
     "name": "Stonescale Eel",
@@ -117,7 +119,8 @@
     "buyPrice": 12000
   },
   {
-    "name": "Thorium Ore"
+    "name": "Thorium Ore",
+    "buyPrice": 1000
   },
   {
     "name": "Champignon fantôme",
