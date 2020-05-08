@@ -18,11 +18,18 @@ fun main(args: Array<String>) {
     val language = Language.valueOf(args[0])
     val filePath = args[1]
 
+    println("Source file is $filePath")
+
     val result = parseAuctionerFile(filePath, language)
     val ss = GsonBuilder().setPrettyPrinting().create().toJson(result)
-    File("data/database/result-${result.timestamp.toEpochMilli()}.json").writeText(ss)
-    
-    Files.copy(File(filePath).toPath(), File("data/auctionator/original-${result.timestamp.toEpochMilli()}.lua").toPath())
+    val file = File("data/database/result-${result.timestamp.toEpochMilli()}.json")
+    println("The result will be written in ${file.absolutePath}")
+    file.writeText(ss)
+    println("Done")
+
+    val originalFileBackup = File("data/auctionator/original-${result.timestamp.toEpochMilli()}.lua")
+    println("The original will be copied in ${originalFileBackup.absolutePath}")
+    Files.copy(File(filePath).toPath(), originalFileBackup.toPath())
 }
 
 private fun parseAuctionerFile(filePath: String, language: Language): ParserResult {
