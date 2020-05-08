@@ -27,6 +27,10 @@ dependencies {
     implementation("io.ktor:ktor-gson:$ktor_version")
     implementation("io.ktor:ktor-client-auth:$ktor_version")
     implementation("io.ktor:ktor-client-auth-jvm:$ktor_version")
+    
+    implementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+    implementation("org.skyscreamer:jsonassert:1.5.0")
+    implementation("org.apache.commons:commons-text:1.8")
 }
 
 tasks {
