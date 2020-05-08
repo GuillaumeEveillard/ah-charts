@@ -4,7 +4,10 @@
     "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal"
   },
   {
-    "name": "Elixir de défense supérieure"
+    "name": "Elixir de défense supérieure",
+    "comment": "Wild Steelbloom, Goldthorn, Leaded Vial",
+    "buyPrice": 6000,
+    "sellPrice": 15000
   },
   {
     "name": "Potion de Bouclier de pierre inférieure",
@@ -110,7 +113,7 @@
   },
   {
     "comment": "*2 pour mangouste",
-    "name": "Fleur de peste", 
+    "name": "Fleur de peste",
     "buyPrice": 12000
   },
   {
@@ -118,9 +121,96 @@
   },
   {
     "name": "Champignon fantôme",
-    "buyPrice": 10000
+    "buyPrice": 10000,
+    "comment": "*1 pour Limited Invulnerability Potion"
   },
-  {"name":  "Libram of Resilience"},
-  {"name":  "Blue Power Crystal"},
-  {"name": "Pattern: Mooncloth Bag"}
+  {
+    "name": "Libram of Resilience"
+  },
+  {
+    "name": "Blue Power Crystal"
+  },
+  {
+    "name": "Pattern: Mooncloth Bag"
+  },
+  {
+    "name": "Greater Arcane Protection Potion",
+    "comment": "Requires Dream Dust, Dreamfoil, Crystal Vial"
+  },
+  {
+    "name": "Dream Dust"
+  },
+  {
+    "name": "Greater Frost Protection Potion",
+    "comment": "Requires Elemental Water, Dreamfoil, Crystal Vial"
+  },
+  {
+    "name": "Elemental Water",
+    "comment": "*1 pour Greater Frost Protection Potion"
+  },
+  {
+    "name": "Limited Invulnerability Potion",
+    "comment": "Requires Blindweed (2), Ghost Mushroom, Crystal Vial"
+  },
+  {
+    "name": "Blindweed",
+    "comment": "*2 pour Limited Invulnerability Potion"
+  },
+  {
+    "name": "Elixir of Giants",
+    "comment": "Sungrass, Gromsblood, Crystal Vial"
+  },
+  {
+    "name": "Gromsblood"
+  },
+  {
+    "name": "Elixir of Greater Agility"
+  },
+  {
+    "name": "Sungrass, Goldthorn, Crystal Vial"
+  },
+  {
+    "name": "Goldthorn"
+  },
+  {
+    "name": "Gift of Arthas",
+    "comment": "Arthas' Tears, Blindweed, Crystal Vial"
+  },
+  {
+    "name": "Arthas' Tears"
+  },
+  {
+    "name": "Arcane Elixir",
+    "comment": "Blindweed, Goldthorn, Crystal Vial"
+  },
+  {
+    "name": "Shadow Oil",
+    "comment": "Requires Fadeleaf (4), Grave Moss (4), Leaded Vial"
+  },
+  {
+    "name": "Fadeleaf"
+  },
+  {
+    "name": "Grave Moss"
+  },
+  {
+    "name": "Shadow Protection Potion",
+    "comment": "Grave Moss, Kingsblood, Leaded Vial"
+  },
+  {
+    "name": "Kingsblood"
+  },
+  {
+    "name": "Swim Speed Potion",
+    "comment": "Swiftthistle, Blackmouth Oil, Empty Vial"
+  },
+  {
+    "name": "Swiftthistle"
+  },
+  {
+    "name": "Elixir of Water Breathing"
+  },
+  {
+    "name": "Aciérite sauvage"
+  }
 ]
