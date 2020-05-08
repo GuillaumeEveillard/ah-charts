@@ -6,6 +6,8 @@ pluginManagement {
             }
         }
     }
+
+    
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
 
@@ -16,9 +18,5 @@ pluginManagement {
         maven { url "https://kotlin.bintray.com/kotlinx" }
     }
 }
-
-rootProject.name = 'ah-charts'
-include 'server'
-include 'ui'
-include 'driller'
+rootProject.name = 'ah-charts-driller'
 
