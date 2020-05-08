@@ -9,6 +9,9 @@ import io.ktor.features.MissingRequestParameterException
 import io.ktor.gson.gson
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.content.defaultResource
+import io.ktor.http.content.resources
+import io.ktor.http.content.static
 import io.ktor.response.respond
 import io.ktor.routing.get
 import io.ktor.routing.route
@@ -45,6 +48,15 @@ fun main() {
         }
         
         routing {
+            static("/") {
+                resources("static")
+                defaultResource("static/index.html")
+            }
+
+            static("static") {
+                resources("static/static")
+            }
+            
             route("wish") {
                 get {
                     call.respond(HttpStatusCode.OK, wishList)    

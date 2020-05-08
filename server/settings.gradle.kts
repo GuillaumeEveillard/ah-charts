@@ -1,2 +1,2 @@
-rootProject.name = "ah-database"
+rootProject.name = "ah-charts-server"
 

@@ -1,2 +1,3 @@
 rootProject.name = 'ah-charts'
 include 'server'
+include 'ui'

@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-node-plugin:1.3.1'
+    }
+}
+
+apply plugin: 'base'
+apply plugin: 'com.moowork.node' // gradle-node-plugin
+
+node {
+    download = false
+}
+
+task installExpress(type: NpmTask) {
+    // install the express package only
+    args = ['install']
+}
+
+npm_run_build {
+    // make sure the build task is executed only when appropriate files change
+    inputs.files fileTree('public')
+    inputs.files fileTree('src')
+
+    // 'node_modules' appeared not reliable for dependency change detection (the task was rerun without changes)
+    // though 'package.json' and 'package-lock.json' should be enough anyway
+    inputs.file 'package.json'
+    inputs.file 'package-lock.json'
+
+    outputs.dir 'build'
+}
+npm_run_build.dependsOn installExpress
+
+// pack output of the build into JAR file
+task packageNpmApp(type: Zip) {
+    dependsOn npm_run_build
+    baseName 'ui'
+    extension 'jar'
+    destinationDir file("${projectDir}/build_packageNpmApp")
+    from('build') {
+        // optional path under which output will be visible in Java classpath, e.g. static resources path
+        into 'static'
+    }
+}
+
+// declare a dedicated scope for publishing the packaged JAR
+configurations {
+    npmResources
+}
+
+configurations.default.extendsFrom(configurations.npmResources)
+
+// expose the artifact created by the packaging task
+artifacts {
+    npmResources(packageNpmApp.archivePath) {
+        builtBy packageNpmApp
+        type 'jar'
+    }
+}
+
+assemble.dependsOn packageNpmApp
+
+
+clean {
+    delete packageNpmApp.archivePath
+}

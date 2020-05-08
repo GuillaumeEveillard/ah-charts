@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm")
 }
 
 group = "org.ggye"
@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":ui"))
+    
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.google.code.gson:gson:2.8.6")
     
@@ -36,8 +38,22 @@ dependencies {
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
+//        jar {
+//            manifest {
+//                attributes["Main-Class"] = "ServerKt"
+//            }
+////            from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+//        }
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+
+    withType<Jar> {
+        manifest {
+            attributes["Main-Class"] = "ServerKt"
+        }
+        from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    }
 }
+
