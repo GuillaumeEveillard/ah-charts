@@ -1,6 +1,7 @@
 [
   {
-    "name": "Elixir de défense excellente"
+    "name": "Elixir de défense excellente",
+    "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal"
   },
   {
     "name": "Elixir de défense supérieure"
@@ -11,6 +12,7 @@
   },
   {
     "name": "Potion de Bouclier de pierre supérieure",
+    "comment": "Requiert Huile de pierre-écaille (3), Minerai de thorium, Fiole de cristal",
     "sellPrice": 40000,
     "buyPrice": 25000
   },
@@ -27,7 +29,8 @@
     "buyPrice": 7500
   },
   {
-    "name": "Greater Nature Protection Potion"
+    "name": "Greater Nature Protection Potion",
+    "comment": "Requiert Terre élémentaire, Feuillerêve, Fiole de cristal"
   },
   {
     "comment": "Craft pour moins de 30 pa",
@@ -50,10 +53,10 @@
     "buyPrice": 1000
   },
   {
-    "comment": "Craft pour 1po30",
+    "comment": "Huile de bouche-noire (2), Etouffante, Fiole plombée (Craft pour 1po30)",
     "name": "Free Action Potion",
     "buyPrice": 10000,
-    "sellPrice": 200000
+    "sellPrice": 20000
   },
   {
     "comment": "For FAP",
@@ -112,5 +115,12 @@
   },
   {
     "name": "Thorium Ore"
-  }
+  },
+  {
+    "name": "Champignon fantôme",
+    "buyPrice": 10000
+  },
+  {"name":  "Libram of Resilience"},
+  {"name":  "Blue Power Crystal"},
+  {"name": "Pattern: Mooncloth Bag"}
 ]
