@@ -1,8 +1,5 @@
 package sample
 
-import io.ktor.client.HttpClient
-import io.ktor.client.request.post
-import io.ktor.client.request.url
 import kotlinx.cinterop.ByteVar
 import kotlinx.cinterop.allocArray
 import kotlinx.cinterop.memScoped
@@ -71,16 +68,15 @@ fun main(args: Array<String>) {
     val r = parseAuctionerFile(lines, language)
 }
 
-private suspend fun xx(snap: AuctionatorSnapshot) {
-    val client = HttpClient()
-
-    val json = io.ktor.client.features.json.defaultSerializer()
-    client.post<Unit>() {
-        url("http://127.0.0.1:8080/")
-        body = json.write(snap) // Generates an OutgoingContent
-    }
-
-}
+//private suspend fun xx(snap: AuctionatorSnapshot) {
+//    val client = HttpClient()
+//
+//    val json = io.ktor.client.features.json.defaultSerializer()
+//    client.post<Unit>() {
+//        url("http://127.0.0.1:8080/")
+//        body = json.write(snap) // Generates an OutgoingContent
+//    }
+//}
 
 private fun parseAuctionerFile(lines: List<String>, language: Language): ParserResult {
     val snapshot = StringBuilder()
