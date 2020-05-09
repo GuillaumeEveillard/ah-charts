@@ -17,6 +17,7 @@ class Quotation {
 }
 
 interface QuotationRendererProps {
+    item: number
     chartName: string
     comment: string | null
     quotations: Quotation[]
@@ -25,10 +26,65 @@ interface QuotationRendererProps {
 }
 
 interface QuotationRendererState {
+    operations: Operation[]
+}
 
+class Operation {
+     type: string;
+     item: number;
+     stackSize: number;
+     quantity: number;
+     price: number;
+     otherPlayer: string;
+     player: string;
+     time: string;
+
+    constructor(type: string, item: number, stackSize: number, quantity: number, price: number, otherPlayer: string, player: string, time: string) {
+        this.type = type;
+        this.item = item;
+        this.stackSize = stackSize;
+        this.quantity = quantity;
+        this.price = price;
+        this.otherPlayer = otherPlayer;
+        this.player = player;
+        this.time = time;
+    }
 }
 
 class QuotationRenderer extends React.Component<QuotationRendererProps, QuotationRendererState> {
+
+
+    constructor(props: QuotationRendererProps) {
+        super(props);
+        this.state = {operations: []}
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch("http://localhost:9898/auctions/history/"+this.props.item)
+            .then(res => {
+                console.log(res);
+                return res;
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                return res;
+            })
+            .then(data => {
+                this.setState({
+                    operations: data
+                })
+            })
+            .catch(function (error) {
+                console.error(error);
+                return error;
+            });
+    }
+
     render() {
         let dates = this.props.quotations.map(q => Array.from(q.values.keys())).flat().sort();
         let startDate = dates[0];
@@ -64,6 +120,8 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
             xAxes: [{type: "time", distribution: "linear", time: {unit: "day", displayFormats: {hour: "MMM D hA"}}}]
         };
 
+        let op = this.state.operations.map(o => <li>{o.type+" Q: "+o.quantity+" | P: "+o.price+" | "+o.player+" | "+o.time}</li>)
+
         const data = {
             // labels: this.props.dates,
             datasets: datasets };
@@ -76,6 +134,7 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
                 // height={50}
                 options={{ maintainAspectRatio: false, scales: scale }}
             />
+            <ul>{op}</ul>
         </div>);
     }
 }
@@ -188,6 +247,7 @@ class QuotationList extends React.Component<QuotationListProps, QuotationListSta
                         overflow: "hidden"
                     }}>
                     <QuotationRenderer
+                        item={itemId}
                     chartName={itemName}
                     comment={wishItem.comment}
                     buyPrice={wishItem.buyPrice}

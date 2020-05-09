@@ -52,6 +52,8 @@ fun main() {
     val json = gson.toJson(buys + sells)
 
     File("auction-history.json").writeText(json)
+    val timestamp = Instant.now().epochSecond
+    File("auction-history-$timestamp.json").writeText(json)
 }
 
 fun parseBuys(ast: LuaElement): List<Operation> {
