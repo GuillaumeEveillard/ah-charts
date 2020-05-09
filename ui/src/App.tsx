@@ -200,21 +200,8 @@ class QuotationList extends React.Component<QuotationListProps, QuotationListSta
             }
         });
 
-        // let from = Array.from(this.state.quotations.entries());
-        // let charts = from.map(e => {
-        //     let item = this.props.items.get(e[0]);
-        //     let itemName = (item == null) ? e[0].toString() : item.frenchNameIfPossible();
-        //
-        //     return (<QuotationRenderer
-        //         chartName={itemName}
-        //         dates={[...e[1].keys()]}
-        //         buyPrice={}
-        //         quotations={[
-        //             new Quotation(e[0].toString(), [...e[1].values()])
-        //         ]}
-        //     />);
-        // });
-        return (<div style={{ background: "grey" }}><GridLayout className="layout" cols={4} rowHeight={400} width={1800}>{charts}</GridLayout></div>);
+        // return (<div style={{ background: "grey" }}><GridLayout className="layout" cols={4} rowHeight={400} width={1800}>{charts}</GridLayout></div>);
+        return (<div>{charts}</div>);
     }
 
 }
