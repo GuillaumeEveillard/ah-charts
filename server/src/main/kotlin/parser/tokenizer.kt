@@ -1,15 +1,32 @@
 package parser
 
+import java.lang.IllegalArgumentException
 
 
 sealed class Token
 sealed class ValueToken : Token()
-class StringToken(val s: String) : ValueToken()
-class LongToken(val l: Long) : ValueToken()
+class StringToken(val s: String) : ValueToken() {
+    override fun toString(): String {
+        return "String<$s>"
+    }
+}
+class DoubleToken(val l: Double) : ValueToken()
 class BooleanToken(val b: Boolean) : ValueToken()
-class ObjectStart() : Token()
-class ObjectEnd() : Token()
-class Key(val key: String) : Token()
+class ObjectStart() : Token() {
+    override fun toString(): String {
+        return "Object start"
+    }
+}
+class ObjectEnd() : Token() {
+    override fun toString(): String {
+        return "Object end"
+    }
+}
+class Key(val key: String) : Token() {
+    override fun toString(): String {
+        return "Key<$key>"
+    }
+}
 class Assignment() : Token()
 
 fun main() {
@@ -41,7 +58,11 @@ val objectEndTokenProducer : TokenProducer = object : TokenProducer {
 val keyTokenProducer : TokenProducer = object : TokenProducer {
     override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
         return if(c == '[') {
-            val s = iterator.asSequence().takeWhile { it != ']' }.joinToString("")
+            val nextC = iterator.next() 
+            val s = stringLogic(nextC, iterator)?.s ?: longLogic(nextC, iterator)?.l.toString() ?: throw IllegalArgumentException("The key is invalid")
+//            val s = iterator.asSequence().takeWhile { it != '"' }.joinToString("")
+            iterator.next() // to consume the [
+            println("Key token ==> "+s)
             Key(s)
         } else {
             null
@@ -50,29 +71,40 @@ val keyTokenProducer : TokenProducer = object : TokenProducer {
 }
 
 val stringTokenProducer : TokenProducer = object : TokenProducer {
-    override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
-        return if(c == '"') {
-            val s = iterator.asSequence().takeWhile { it != '"' }.joinToString("")
-            StringToken(s)
-        } else {
-            null
-        }
+    override fun produce(c: Char, iterator: ListIterator<Char>): StringToken? {
+        return stringLogic(c, iterator)
+    }
+}
+
+private fun stringLogic(c: Char, iterator: ListIterator<Char>): StringToken? {
+    return if (c == '"') {
+        val s = iterator.asSequence().takeWhile { it != '"' }.joinToString("")
+        println("String token ==> " + s)
+        StringToken(s)
+    } else {
+        null
     }
 }
 
 val longTokenProducer : TokenProducer = object : TokenProducer {
-    override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
-        return if(c.isDigit() || c == '-') {
-            val s = iterator.asSequence().takeWhile { it.isDigit() || it == '.' }.joinToString("")
+    override fun produce(c: Char, iterator: ListIterator<Char>): DoubleToken? {
+        return longLogic(c, iterator)
+    }
+
+   
+}
+private fun longLogic(c: Char, iterator: ListIterator<Char>): DoubleToken? {
+    return if (c.isDigit() || c == '-') {
+        val s = iterator.asSequence().takeWhile { it.isDigit() || it == '.' }.joinToString("")
+        iterator.previous()
+        val x = iterator.next()
+        if (!x.isDigit()) {
             iterator.previous()
-            val x = iterator.next()
-            if(!x.isDigit()) {
-                iterator.previous()
-            }
-            LongToken((c+s).toLong())
-        } else {
-            null
         }
+        println("Double token ==> " + (c + s))
+        return DoubleToken((c + s).toDouble())
+    } else {
+        null
     }
 }
 

@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":ui"))
+//    implementation(project(":ui"))
     
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.google.code.gson:gson:2.8.6")

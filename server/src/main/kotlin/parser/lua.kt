@@ -21,7 +21,7 @@ fun tokenize(s: String) : List<Token> {
     val tokens = mutableListOf<Token>()
     while (scanner.hasNext()) {
         if(scanner.hasNextLong()) {
-            tokens.add(LongToken(scanner.nextLong()))
+            tokens.add(DoubleToken(scanner.nextDouble()))
         } else {
             val x = scanner.next()
             when(x) {
