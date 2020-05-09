@@ -21,6 +21,7 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import parser.Operation
+import parser.readStockFromTsm
 import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
@@ -35,6 +36,8 @@ fun main() {
     val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
     val operations = Gson().fromJson<List<Operation>>(File("auction-history.json").readText(), t.type)
     val auctionHistory = AuctionHistory(operations)
+
+    val stock = readStockFromTsm()
 
     val server = embeddedServer(Netty, port = 9898) {
         install(ContentNegotiation) {
@@ -105,6 +108,15 @@ fun main() {
                         val operations = auctionHistory.getOperations(itemId)
                         call.respond(HttpStatusCode.OK, operations)
                     }
+                }
+            }
+            
+            route("stock") {
+                get("/{itemId}") {
+                    val itemId = call.parameters["itemId"]?.toLongOrNull()
+                            ?: throw MissingRequestParameterException("Item id " + call.parameters["itemId"] + " invalid.")
+                    val itemInStock = stock.getItemInStock(itemId)
+                    call.respond(HttpStatusCode.OK, itemInStock)
                 }
             }
         }

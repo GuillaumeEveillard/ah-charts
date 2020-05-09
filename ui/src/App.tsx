@@ -26,7 +26,8 @@ interface QuotationRendererProps {
 }
 
 interface QuotationRendererState {
-    operations: Operation[]
+    operations: Operation[],
+    stock: ItemInStock[]
 }
 
 class Operation {
@@ -51,12 +52,27 @@ class Operation {
     }
 }
 
+class ItemInStock{
+    item: number;
+    quantity: number;
+    character: string;
+    slot: string;
+
+
+    constructor(item: number, quantity: number, character: string, slot: string) {
+        this.item = item;
+        this.quantity = quantity;
+        this.character = character;
+        this.slot = slot;
+    }
+}
+
 class QuotationRenderer extends React.Component<QuotationRendererProps, QuotationRendererState> {
 
 
     constructor(props: QuotationRendererProps) {
         super(props);
-        this.state = {operations: []}
+        this.state = {operations: [], stock: []}
     }
 
     componentDidMount() {
@@ -77,6 +93,25 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
             .then(data => {
                 this.setState({
                     operations: data
+                })
+            })
+            .catch(function (error) {
+                console.error(error);
+                return error;
+            });
+        fetch("http://localhost:9898/stock/"+this.props.item)
+            .then(res => {
+                console.log(res);
+                return res;
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                return res;
+            })
+            .then(data => {
+                this.setState({
+                    stock: data
                 })
             })
             .catch(function (error) {
@@ -120,6 +155,7 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
             xAxes: [{type: "time", distribution: "linear", time: {unit: "day", displayFormats: {hour: "MMM D hA"}}}]
         };
 
+        let s = this.state.stock.map(o => <li>{o.character+" "+o.slot+" "+o.quantity}</li>)
         let op = this.state.operations.map(o => <li>{o.type+" Q: "+o.quantity+" | P: "+o.price+" | "+o.player+" | "+o.time}</li>)
 
         const data = {
@@ -134,7 +170,8 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
                 // height={50}
                 options={{ maintainAspectRatio: false, scales: scale }}
             />
-            <ul>{op}</ul>
+            <ul title={"Stock"}>{s}</ul>
+            <ul title={"Operations"}>{op}</ul>
         </div>);
     }
 }
@@ -231,7 +268,7 @@ class QuotationList extends React.Component<QuotationListProps, QuotationListSta
         let charts = Array.from(this.props.wishItems.values()).map((wishItem, index) => {
             let itemId = wishItem.id;
             let item = this.props.items.get(wishItem.id);
-            let itemName = (item == null) ? itemId.toString() : item.frenchNameIfPossible();
+            let itemName = (item == null) ? itemId.toString() : item.allNames();
             let quotation = this.state.quotations.get(wishItem.id);
             let quotationBestAverage = this.state.quotationsBestAverage.get(wishItem.id);
 
@@ -281,6 +318,10 @@ class Item {
         if(this.frenchName != null) return this.frenchName;
         if(this.englishName != null) return this.englishName;
         return this.id.toString();
+    }
+
+    allNames() : string {
+        return this.id+" / "+this.frenchName+" / "+this.englishName
     }
 }
 

@@ -26,29 +26,29 @@ class CsvParser<T>(private val builder: ObjectBuilder<T>, private val header: St
 enum class Slot {INVENTORY, BANK, MAIL, AUCTION}
 
 class Stock {
-    val stocks = mutableMapOf<Long, ItemStock>() 
-    
-    fun add(item: Long, quantity: Long, character: String, slot: Slot) {
-        stocks.compute(item){_, itemStock -> (itemStock?:ItemStock()).add(quantity, character, slot)}
-    }
+    val stocks = mutableMapOf<Long, ItemStock>()
 
     fun add(item: ItemInStock) {
-        add(item.item, item.quantity, item.character, item.slot)
+        stocks.compute(item.item){_, itemStock -> (itemStock?:ItemStock()).add(item)}
     }
 
     override fun toString(): String {
         return "Stock(stocks=$stocks)"
     }
 
+    fun getItemInStock(itemId: Long): List<ItemInStock> {
+        return stocks[itemId]?.getItemInStock() ?: emptyList()
+    }
+
 
 }
 
 class ItemStock {
-    val stock = mutableMapOf<String, MutableMap<Slot, Long>>()
+    val stock = mutableMapOf<String, MutableMap<Slot, ItemInStock>>()
     
-    fun add(quantity: Long, character: String, slot: Slot) : ItemStock {
-        val stockForCharacter = stock.getOrPut(character) {mutableMapOf()}
-        stockForCharacter.compute(slot) {_, q -> if(q == null) quantity else q + quantity}
+    fun add(item: ItemInStock) : ItemStock {
+        val stockForCharacter = stock.getOrPut(item.character) {mutableMapOf()}
+        stockForCharacter.compute(item.slot) {_, q -> if(q == null) item else q.add(item.quantity)}
         return this
     }
 
@@ -56,33 +56,46 @@ class ItemStock {
         return "ItemStock(stock=$stock)"
     }
 
+    fun getItemInStock(): List<ItemInStock> {
+        return stock.values.map { it.values }.flatten()
+    }
+
 
 }
 
-data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot)
+data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot) {
+    fun add(quantity: Long): ItemInStock {
+        return this.copy(quantity = this.quantity + quantity)
+    }
+}
 
 fun main() {
+    readStockFromTsm()
+
+}
+
+fun readStockFromTsm(): Stock {
     val filePath = "F:\\Jeux\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua"
     val lines = File(filePath).readLines()
 
     val text = StringBuilder()
-    
+
     for (line in lines) {
-      val cleanLine = line.substringBeforeLast("--")
-      if(cleanLine.startsWith("TradeSkillMasterDB")) {
-          text.append("{")
-      } else if(cleanLine.startsWith("TSMItemInfoDB")) {
-        break          
-      }else {
-          text.append(cleanLine)
-      
-      }
+        val cleanLine = line.substringBeforeLast("--")
+        if (cleanLine.startsWith("TradeSkillMasterDB")) {
+            text.append("{")
+        } else if (cleanLine.startsWith("TSMItemInfoDB")) {
+            break
+        } else {
+            text.append(cleanLine)
+
+        }
     }
 
     val tokens = tokenize2(text.toString())
     val ast = buildAst(tokens)
-    
-    
+
+
     val buys = parseBuys(ast)
     val sells = parseSales(ast)
 
@@ -95,33 +108,26 @@ fun main() {
 
 
     val keys = discoverTsmStockKey(ast)
-    
-    
-     val itemsInStock = keys.map {key -> 
-            val tsmKey = key.tsmKey()
-            val o = getObject(ast, tsmKey)
-            getValues(o)
-                    .mapValues { if (it.value is LongLiteral) (it.value as LongLiteral).value else null }
-                    .filterValues { it != null }
-                    .map {
-                        ItemInStock(
-                                it.key.substringAfter(":").substringBefore(":").toLong(),
-                                it.value!!.toLong(),
-                                key.character,
-                                key.slot)
-                    }
-        }.flatten()
-        
+
+
+    val itemsInStock = keys.map { key ->
+        val tsmKey = key.tsmKey()
+        val o = getObject(ast, tsmKey)
+        getValues(o)
+                .mapValues { if (it.value is LongLiteral) (it.value as LongLiteral).value else null }
+                .filterValues { it != null }
+                .map {
+                    ItemInStock(
+                            it.key.substringAfter(":").substringBefore(":").toLong(),
+                            it.value!!.toLong(),
+                            key.character,
+                            key.slot)
+                }
+    }.flatten()
+
     val stock = Stock()
-    itemsInStock.forEach{stock.add(it)}
-    
-    stock.toString()
-
-
-    "s@Tavernier - Alliance - Sulfuron@internalData@bagQuantity"
-    "s@Directcompo - Alliance - Sulfuron@internalData@bankQuantity"
-    "s@Directcompo - Alliance - Sulfuron@internalData@mailQuantity"
-    "s@Tungstène - Alliance - Sulfuron@internalData@auctionQuantity"
+    itemsInStock.forEach { stock.add(it) }
+    return stock
 }
 
 private fun discoverTsmStockKey(ast: LuaElement): List<StockReadingKey> {
