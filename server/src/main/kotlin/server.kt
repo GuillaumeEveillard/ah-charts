@@ -1,6 +1,8 @@
+import com.google.gson.Gson
 import com.google.gson.JsonNull
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializer
+import com.google.gson.reflect.TypeToken
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.CORS
@@ -18,6 +20,8 @@ import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import parser.Operation
+import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -27,6 +31,10 @@ fun main() {
     val parsingResult = loadResultFiles()
     val analyzer = Analyzer(parsingResult.auctions)
     val wishList = loadWishList(parsingResult)
+
+    val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
+    val operations = Gson().fromJson<List<Operation>>(File("auction-history.json").readText(), t.type)
+    val auctionHistory = AuctionHistory(operations)
 
     val server = embeddedServer(Netty, port = 9898) {
         install(ContentNegotiation) {
@@ -88,7 +96,26 @@ fun main() {
                     }
                 }
             }
+            
+            route("auctions") {
+                route("history") {
+                    get("/{itemId}") {
+                        val itemId = call.parameters["itemId"]?.toLongOrNull()
+                                ?: throw MissingRequestParameterException("Item id " + call.parameters["itemId"] + " invalid.")
+                        val operations = auctionHistory.getOperations(itemId)
+                        call.respond(HttpStatusCode.OK, operations)
+                    }
+                }
+            }
         }
     }
     server.start(wait = true)
+}
+
+class AuctionHistory(val operations: Collection<Operation>) {
+    val operationsByItem = operations.groupBy { it.item }
+    
+    fun getOperations(item: Long): List<Operation> {
+        return operationsByItem[item] ?: emptyList()
+    }
 }

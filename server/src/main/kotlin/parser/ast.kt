@@ -1,5 +1,6 @@
 package parser
 
+import org.apache.commons.lang3.StringEscapeUtils
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
@@ -11,6 +12,11 @@ interface LuaElement {
 data class LuaObject(val content: List<LuaElement>) : LuaElement {
     override fun toJson(): String {
         return "[\n"+content.map { it.toJson() }.joinToString(",\n")+"]"
+    }
+    
+    fun getElementByKey(key: String) : LuaElement? {
+        val kv = content.find { it is KV && it.key == key } as KV?
+        return kv?.value
     }
 }
 data class BooleanLiteral(val value: Boolean) : LuaElement{
