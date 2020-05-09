@@ -23,7 +23,7 @@
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "buyPrice": 4500
+    "buyPrice": 4000
   },
   {
     "name": "Stonescale Eel",
@@ -167,7 +167,8 @@
     "name": "Gromsblood"
   },
   {
-    "name": "Elixir of Greater Agility"
+    "name": "Elixir of Greater Agility",
+    "buyPrice": 4500
   },
   {
     "name": "Sungrass, Goldthorn, Crystal Vial"
