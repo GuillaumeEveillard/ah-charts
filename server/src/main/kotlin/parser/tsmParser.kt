@@ -23,6 +23,44 @@ class CsvParser<T>(private val builder: ObjectBuilder<T>, private val header: St
     }
 }
 
+enum class Slot {INVENTORY, BANK, MAIL, AUCTION}
+
+class Stock {
+    val stocks = mutableMapOf<Long, ItemStock>() 
+    
+    fun add(item: Long, quantity: Long, character: String, slot: Slot) {
+        stocks.compute(item){_, itemStock -> (itemStock?:ItemStock()).add(quantity, character, slot)}
+    }
+
+    fun add(item: ItemInStock) {
+        add(item.item, item.quantity, item.character, item.slot)
+    }
+
+    override fun toString(): String {
+        return "Stock(stocks=$stocks)"
+    }
+
+
+}
+
+class ItemStock {
+    val stock = mutableMapOf<String, MutableMap<Slot, Long>>()
+    
+    fun add(quantity: Long, character: String, slot: Slot) : ItemStock {
+        val stockForCharacter = stock.getOrPut(character) {mutableMapOf()}
+        stockForCharacter.compute(slot) {_, q -> if(q == null) quantity else q + quantity}
+        return this
+    }
+
+    override fun toString(): String {
+        return "ItemStock(stock=$stock)"
+    }
+
+
+}
+
+data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot)
+
 fun main() {
     val filePath = "F:\\Jeux\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua"
     val lines = File(filePath).readLines()
@@ -54,6 +92,64 @@ fun main() {
     File("auction-history.json").writeText(json)
     val timestamp = Instant.now().epochSecond
     File("auction-history-$timestamp.json").writeText(json)
+
+
+    val keys = discoverTsmStockKey(ast)
+    
+    
+     val itemsInStock = keys.map {key -> 
+            val tsmKey = key.tsmKey()
+            val o = getObject(ast, tsmKey)
+            getValues(o)
+                    .mapValues { if (it.value is LongLiteral) (it.value as LongLiteral).value else null }
+                    .filterValues { it != null }
+                    .map {
+                        ItemInStock(
+                                it.key.substringAfter(":").substringBefore(":").toLong(),
+                                it.value!!.toLong(),
+                                key.character,
+                                key.slot)
+                    }
+        }.flatten()
+        
+    val stock = Stock()
+    itemsInStock.forEach{stock.add(it)}
+    
+    stock.toString()
+
+
+    "s@Tavernier - Alliance - Sulfuron@internalData@bagQuantity"
+    "s@Directcompo - Alliance - Sulfuron@internalData@bankQuantity"
+    "s@Directcompo - Alliance - Sulfuron@internalData@mailQuantity"
+    "s@Tungstène - Alliance - Sulfuron@internalData@auctionQuantity"
+}
+
+private fun discoverTsmStockKey(ast: LuaElement): List<StockReadingKey> {
+    val scopeKeys = getObject(ast, "_scopeKeys")
+    val char = getObject(scopeKeys, "sync")
+    val r = getContent(char).mapNotNull { if (it is StringLiteral) it.value else null }
+
+    return r.map {
+        val character = it.substringBefore(" ")
+        listOf(
+                StockReadingKey(character, Slot.INVENTORY),
+                StockReadingKey(character, Slot.BANK),
+                StockReadingKey(character, Slot.MAIL),
+                StockReadingKey(character, Slot.AUCTION)
+        )
+    }.flatten()
+}
+
+data class StockReadingKey(val character: String, val slot: Slot) {
+    fun tsmKey() : String {
+        val tsmSlot = when(slot) {
+            Slot.INVENTORY -> "bagQuantity"
+            Slot.BANK -> "bankQuantity"
+            Slot.MAIL -> "mailQuantity"
+            Slot.AUCTION -> "auctionQuantity"
+        }
+        return "s@$character - Alliance - Sulfuron@internalData@$tsmSlot"
+    }
 }
 
 fun parseBuys(ast: LuaElement): List<Operation> {
@@ -70,11 +166,35 @@ fun parseSales(ast: LuaElement): List<Operation> {
     return lines.subList(1, lines.size).mapNotNull { parser.parse(it) }
 }
 
+fun getContent(ast: LuaElement) : List<LuaElement> {
+    if(ast is LuaObject) {
+        return ast.content
+    }
+    throw IllegalArgumentException("Not good format")
+}
+
 fun getValue(ast: LuaElement, key: String) : String {
     if(ast is LuaObject) {
         val value = ast.getElementByKey(key)
         if(value is StringLiteral) {
             return value.value
+        }
+    }
+    throw IllegalArgumentException("Not good format")
+}
+
+fun getValues(ast: LuaElement) : Map<String, LuaElement> {
+    if(ast is LuaObject) {
+        return ast.content.mapNotNull { if(it is KV) Pair(it.key, it.value) else null }.toMap()
+    }
+    throw IllegalArgumentException("Not good format")
+}
+
+fun getObject(ast: LuaElement, key: String) : LuaObject {
+    if(ast is LuaObject) {
+        val value = ast.getElementByKey(key)
+        if(value is LuaObject) {
+            return value
         }
     }
     throw IllegalArgumentException("Not good format")
