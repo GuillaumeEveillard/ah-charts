@@ -2,9 +2,11 @@ import React from 'react';
 import './App.css';
 import { Line } from 'react-chartjs-2';
 import {ChartDataSets,  ChartScales} from "chart.js";
-import GridLayout from 'react-grid-layout';
 
 import "./resizable.css";
+
+// const url = ""+window.location
+const url = "http://localhost:9898/"
 
 class Quotation {
     name: string;
@@ -80,7 +82,7 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
     }
 
     fetchData() {
-        fetch("http://localhost:9898/auctions/history/"+this.props.item)
+        fetch(url+"auctions/history/"+this.props.item)
             .then(res => {
                 console.log(res);
                 return res;
@@ -99,7 +101,7 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
                 console.error(error);
                 return error;
             });
-        fetch("http://localhost:9898/stock/"+this.props.item)
+        fetch(url+"stock/"+this.props.item)
             .then(res => {
                 console.log(res);
                 return res;
@@ -156,7 +158,8 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
         };
 
         let s = this.state.stock.map(o => <li>{o.character+" "+o.slot+" "+o.quantity}</li>)
-        let op = this.state.operations.map(o => <li>{o.type+" Q: "+o.quantity+" | P: "+o.price+" | "+o.player+" | "+o.time}</li>)
+        let buys = this.state.operations.filter(o => o.type === "BUY").map(o => <li>{o.quantity+" @ "+o.price+" "+o.player+" "+o.time}</li>)
+        let sells = this.state.operations.filter(o => o.type === "SELL").map(o => <li>{o.quantity+" @ "+o.price+" "+o.player+" "+o.time}</li>)
 
         const data = {
             // labels: this.props.dates,
@@ -166,7 +169,7 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
             <div style={{marginTop: "0em", marginBottom: "0em"}}>{this.props.comment}</div>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-9">
             <Line
                 data={data}
                 // width={100}
@@ -174,10 +177,13 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
                 options={{ maintainAspectRatio: false, scales: scale }}
             />
                     </div>
-                    <div className="col-2">
+                    <div className="col-1">
                         <ul title={"Stock"}>{s}</ul></div>
-                    <div className="col-2">
-            <ul title={"Operations"}>{op}</ul>
+                    <div className="col-1">
+            <ul title={"Buys"}>{buys}</ul>
+                    </div>
+                    <div className="col-1">
+                        <ul title={"Sells"}>{sells}</ul>
                     </div>
                 </div></div>
         </div>);
@@ -215,7 +221,7 @@ class QuotationList extends React.Component<QuotationListProps, QuotationListSta
         this.props.wishItems
             .map(i => i.id)
             .forEach(id => {
-                fetch("http://localhost:9898/quotations/"+id)
+                fetch(url+"quotations/"+id)
                 .then(res => {
                     console.log(res);
                     return res;
@@ -242,7 +248,7 @@ class QuotationList extends React.Component<QuotationListProps, QuotationListSta
                     return error;
                 });
 
-                fetch("http://localhost:9898/quotations/"+id+"/best-average/10")
+                fetch(url+"quotations/"+id+"/best-average/10")
                     .then(res => {
                         console.log(res);
                         return res;
@@ -390,7 +396,7 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     fetchData() {
-        fetch("http://localhost:9898/items")
+        fetch(url+"items")
             .then(res => res.json())
             .then(data => {
                 let items = new Map<number, Item>();
@@ -401,7 +407,7 @@ class App extends React.Component<AppProps, AppState> {
                 this.setState({items: items})
             });
 
-        fetch("http://localhost:9898/wish")
+        fetch(url+"wish")
             .then(res => res.json())
             .then(data => {
                 let wish: WishListItem[] = [];
@@ -412,7 +418,7 @@ class App extends React.Component<AppProps, AppState> {
                 this.setState({wish: wish})
             });
 
-        fetch("http://localhost:9898/wish/ready-to-buy")
+        fetch(url+"wish/ready-to-buy")
             .then(res => res.json())
             .then(data => {
                 let wish: WishListItem[] = [];
@@ -428,6 +434,7 @@ class App extends React.Component<AppProps, AppState> {
             return (
                 <div className="App">
                     <h1>Bonnes affaires</h1>
+                    <p>{url}</p>
                     {this.state.readyToBuy != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToBuy}/> }
                     <h1>List complète</h1>
                     {this.state.wish != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.wish}/> }
