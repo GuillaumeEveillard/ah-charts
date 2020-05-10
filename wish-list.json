@@ -2,8 +2,9 @@
   {
     "name": "Elixir de défense excellente",
     "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal",
-    "buyPrice": 20000,
-    "sellPrice": 32500
+    "buyPrice": 15000,
+    "sellPrice": 27900,
+    "targetStock": 20
   },
   {
     "name": "Elixir de défense supérieure",
@@ -18,28 +19,30 @@
   {
     "name": "Potion de Bouclier de pierre supérieure",
     "comment": "Requiert Huile de pierre-écaille (3), Minerai de thorium, Fiole de cristal",
-    "sellPrice": 40000,
-    "buyPrice": 25000
+    "sellPrice": 37500,
+    "buyPrice": 25000,
+    "targetStock": 20
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "buyPrice": 4000
+    "buyPrice": 3000
   },
   {
     "name": "Stonescale Eel",
-    "buyPrice": 7500
+    "buyPrice": 5500
   },
   {
     "name": "Stonescale Oil",
-    "buyPrice": 7500
+    "buyPrice": 5500
   },
   {
     "name": "Greater Nature Protection Potion",
     "comment": "Requiert Terre élémentaire, Feuillerêve, Fiole de cristal"
   },
   {
-    "comment": "Craft pour moins de 30 pa",
-    "name": "Nature Protection Potion"
+    "comment": "Requiert Liferoot, Stranglekelp, Leaded Vial, Craft pour moins de 30 pa",
+    "name": "Nature Protection Potion",
+    "sellPrice": 7500
   },
   {
     "name": "Elemental Fire",
@@ -87,7 +90,7 @@
   {
     "comment": "For Elixir de Défense excellente",
     "name": "Soleillette",
-    "buyPrice": 2000
+    "buyPrice": 2500
   },
   {
     "name": "Terre élémentaire",
@@ -102,7 +105,10 @@
     "buyPrice": 1000
   },
   {
-    "name": "Vietérule"
+    "name": "Vietérule",
+    "buyPrice": 100,
+    "targetStock": 100  
+    
   },
   {
     "name": "Elixir de la Mangouste",
@@ -124,7 +130,7 @@
   },
   {
     "name": "Champignon fantôme",
-    "buyPrice": 10000,
+    "buyPrice": 12500,
     "comment": "*1 pour Limited Invulnerability Potion"
   },
   {
@@ -157,7 +163,8 @@
   },
   {
     "name": "Blindweed",
-    "comment": "*2 pour Limited Invulnerability Potion"
+    "comment": "*2 pour Limited Invulnerability Potion",
+    "buyPrice": 4000
   },
   {
     "name": "Elixir of Giants",
@@ -174,7 +181,8 @@
     "name": "Sungrass, Goldthorn, Crystal Vial"
   },
   {
-    "name": "Goldthorn"
+    "name": "Goldthorn",
+    "buyPrice": 2000
   },
   {
     "name": "Gift of Arthas",
@@ -202,7 +210,8 @@
     "comment": "Grave Moss, Kingsblood, Leaded Vial"
   },
   {
-    "name": "Kingsblood"
+    "name": "Kingsblood",
+    "buyPrice": 100
   },
   {
     "name": "Swim Speed Potion",
@@ -212,7 +221,11 @@
     "name": "Swiftthistle"
   },
   {
-    "name": "Elixir of Water Breathing"
+    "name": "Elixir of Water Breathing",
+    "sellPrice": 7500
+  },
+  {
+    "name": "Elixir of Greater Water Breathing"
   },
   {
     "name": "Aciérite sauvage"
