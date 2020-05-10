@@ -164,14 +164,22 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
         return (<div>
             <h4>{this.props.chartName}</h4>
             <div style={{marginTop: "0em", marginBottom: "0em"}}>{this.props.comment}</div>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-8">
             <Line
                 data={data}
                 // width={100}
                 // height={50}
                 options={{ maintainAspectRatio: false, scales: scale }}
             />
-            <ul title={"Stock"}>{s}</ul>
+                    </div>
+                    <div className="col-2">
+                        <ul title={"Stock"}>{s}</ul></div>
+                    <div className="col-2">
             <ul title={"Operations"}>{op}</ul>
+                    </div>
+                </div></div>
         </div>);
     }
 }
