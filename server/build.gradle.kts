@@ -33,6 +33,7 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     implementation("org.skyscreamer:jsonassert:1.5.0")
     implementation("org.apache.commons:commons-text:1.8")
+    implementation("com.xenomachina:kotlin-argparser:2.0.7")
 }
 
 tasks {

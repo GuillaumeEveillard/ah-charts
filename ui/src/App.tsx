@@ -5,8 +5,8 @@ import {ChartDataSets,  ChartScales} from "chart.js";
 
 import "./resizable.css";
 
-// const url = ""+window.location
-const url = "http://localhost:9898/"
+const url = ""+window.location
+//const url = "http://localhost:9898/"
 
 class Quotation {
     name: string;

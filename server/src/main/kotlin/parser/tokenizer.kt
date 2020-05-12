@@ -60,9 +60,7 @@ val keyTokenProducer : TokenProducer = object : TokenProducer {
         return if(c == '[') {
             val nextC = iterator.next() 
             val s = stringLogic(nextC, iterator)?.s ?: longLogic(nextC, iterator)?.l.toString() ?: throw IllegalArgumentException("The key is invalid")
-//            val s = iterator.asSequence().takeWhile { it != '"' }.joinToString("")
             iterator.next() // to consume the [
-            println("Key token ==> "+s)
             Key(s)
         } else {
             null
@@ -79,7 +77,6 @@ val stringTokenProducer : TokenProducer = object : TokenProducer {
 private fun stringLogic(c: Char, iterator: ListIterator<Char>): StringToken? {
     return if (c == '"') {
         val s = iterator.asSequence().takeWhile { it != '"' }.joinToString("")
-        println("String token ==> " + s)
         StringToken(s)
     } else {
         null
@@ -101,7 +98,6 @@ private fun longLogic(c: Char, iterator: ListIterator<Char>): DoubleToken? {
         if (!x.isDigit()) {
             iterator.previous()
         }
-        println("Double token ==> " + (c + s))
         return DoubleToken((c + s).toDouble())
     } else {
         null

@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder
 import java.io.File
 import java.lang.StringBuilder
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.time.Instant
 
 enum class Language {FRENCH, ENGLISH}
@@ -18,22 +19,29 @@ fun main(args: Array<String>) {
     val language = Language.valueOf(args[0])
     val filePath = args[1]
 
-    println("Source file is $filePath")
+    extractAuctionatorData(File(filePath), language)
+}
 
-    val result = parseAuctionerFile(filePath, language)
+fun extractAuctionatorData(file: File, language: Language) {
+    println("[AUCTIONATOR extraction] [START]")
+    
+    val result = parseAuctionerFile(file, language)
     val ss = GsonBuilder().setPrettyPrinting().create().toJson(result)
-    val file = File("data/database/result-${result.timestamp.toEpochMilli()}.json")
-    println("The result will be written in ${file.absolutePath}")
-    file.writeText(ss)
+    val jsonFile = File("data/database/result-${result.timestamp.toEpochMilli()}.json")
+    println("The result will be written in ${jsonFile.absolutePath}")
+    jsonFile.writeText(ss)
     println("Done")
 
     val originalFileBackup = File("data/auctionator/original-${result.timestamp.toEpochMilli()}.lua")
     println("The original will be copied in ${originalFileBackup.absolutePath}")
-    Files.copy(File(filePath).toPath(), originalFileBackup.toPath())
+    Files.copy(file.toPath(), originalFileBackup.toPath(), StandardCopyOption.REPLACE_EXISTING)
+
+    println("[AUCTIONATOR extraction] [END]")
 }
 
-private fun parseAuctionerFile(filePath: String, language: Language): ParserResult {
-    val lines = File(filePath).readLines()
+private fun parseAuctionerFile(file: File, language: Language): ParserResult {
+    println("Loading source file: $file")
+    val lines = file.readLines()
 
     val snapshot = StringBuilder()
 
@@ -75,13 +83,15 @@ private fun parseAuctionerFile(filePath: String, language: Language): ParserResu
     }
 
     val s = snapshot.toString()
-    val o = Gson().fromJson<AuctionatorSnapshot>(s, AuctionatorSnapshot::class.java)
+    val o = Gson().fromJson(s, AuctionatorSnapshot::class.java)
 
     val timestamp = Instant.ofEpochSecond(o.snapshot_at)
     val items = o.auctions.map { createItem(it, language) }.toSet()
     val auctions = o.auctions.map { 
-        val byout = if (it.b == 0L) null else it.b
-        Auction(it.i, it.q, it.s,  byout, timestamp) }
+        val buyout = if (it.b == 0L) null else it.b
+        Auction(it.i, it.q, it.s,  buyout, timestamp) }
+
+    println("Source file loaded ($file)")
     return ParserResult(language, items, auctions, timestamp)
 }
 

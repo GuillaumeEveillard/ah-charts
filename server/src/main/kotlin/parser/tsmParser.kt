@@ -1,10 +1,11 @@
 package parser
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.lang.StringBuilder
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.time.Instant
 
 enum class OperationType {BUY, SELL}
@@ -70,13 +71,27 @@ data class ItemInStock(val item: Long, val quantity: Long, val character: String
 }
 
 fun main() {
-    readStockFromTsm()
-
+    val tsmFile = File("C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
+    readStockFromTsm(tsmFile)
 }
 
-fun readStockFromTsm(): Stock {
-    val filePath = "F:\\Jeux\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua"
-    val lines = File(filePath).readLines()
+fun readStockFromTsm(tsmFile: File): Stock {
+    println("[TSM extraction] [START]")
+    
+    val targetTsmFolder = File("data/tsm")
+    if(!targetTsmFolder.exists()) {
+        targetTsmFolder.mkdirs()
+    }
+    val databaseFolder = File("data/database")
+    if(!databaseFolder.exists()) {
+        databaseFolder.mkdirs()
+    }
+    
+    val timestamp = Instant.now()
+    val originalFileBackup = targetTsmFolder.resolve("original-${timestamp.epochSecond}.lua")
+    Files.copy(tsmFile.toPath(), originalFileBackup.toPath(), StandardCopyOption.REPLACE_EXISTING)
+    
+    val lines = tsmFile.readLines()
 
     val text = StringBuilder()
 
@@ -102,10 +117,8 @@ fun readStockFromTsm(): Stock {
     val gson = GsonBuilder().setPrettyPrinting().create()
     val json = gson.toJson(buys + sells)
 
-    File("auction-history.json").writeText(json)
-    val timestamp = Instant.now().epochSecond
-    File("auction-history-$timestamp.json").writeText(json)
-
+    databaseFolder.resolve("auction-history.json").writeText(json)
+    databaseFolder.resolve("auction-history-${timestamp.epochSecond}.json").writeText(json)
 
     val keys = discoverTsmStockKey(ast)
 
@@ -127,6 +140,9 @@ fun readStockFromTsm(): Stock {
 
     val stock = Stock()
     itemsInStock.forEach { stock.add(it) }
+    
+    println("[TSM extraction] [DONE]")
+    
     return stock
 }
 
