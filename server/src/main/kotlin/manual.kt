@@ -11,5 +11,5 @@ fun main() {
         WishListItemConfig("Rhum de Rumsey label noir", buyPrice = 5000))
 
     val json = GsonBuilder().setPrettyPrinting().create().toJson(wishList)
-    File("wish-list.json").writeText(json)
+    File("data/wish-list.json").writeText(json)
 }

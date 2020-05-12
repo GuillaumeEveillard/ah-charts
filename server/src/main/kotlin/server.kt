@@ -45,10 +45,10 @@ class CliArgs(parser: ArgParser) {
                     help = "WoW folder (default = C:\\Program Files (x86)\\World of Warcraft ).")
             .default("C:\\Program Files (x86)\\World of Warcraft")
 
-    val language by parser.flagging(
+    val language by parser.storing(
                     "-l", "--language",
                     help = "WoW language (ENGLISH or FRENCH, default: ENGLISH).")
-            .default(false)
+            .default("ENGLISH")
 }
 
 fun main(args: Array<String>) {
@@ -58,7 +58,7 @@ fun main(args: Array<String>) {
             val auctionatorFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\Auctionator.lua")
             val tsmFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
 
-            extractAuctionatorData(auctionatorFilePath, Language.ENGLISH)
+            extractAuctionatorData(auctionatorFilePath, Language.valueOf(language))
 
             val stock = readStockFromTsm(tsmFilePath)
 

@@ -26,7 +26,7 @@ data class Database(val items: Collection<Item>, val auctions: List<Auction>) {
 }
 
 fun loadWishList(database: Database) : Collection<WishListItem> {
-    val json = File("wish-list.json").readText()
+    val json = File("data/wish-list.json").readText()
     val t: TypeToken<List<WishListItemConfig>> = object : TypeToken<List<WishListItemConfig>>() {}
     val w = Gson().fromJson<List<WishListItemConfig>>(json, t.type)
     
