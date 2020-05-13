@@ -1,6 +1,8 @@
 package parser
 
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.lang.StringBuilder
@@ -73,6 +75,22 @@ data class ItemInStock(val item: Long, val quantity: Long, val character: String
 fun main() {
     val tsmFile = File("C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
     readStockFromTsm(tsmFile)
+}
+
+fun readAllAuctionHistoryFiles(): List<Operation> {
+    val allOperations = mutableSetOf<Operation>()
+    val gson = Gson()
+    File("data/database")
+            .listFiles()
+            .filter {it.name.startsWith("auction-history-")}
+            .forEach {
+                it.readText()
+                val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
+                val op : List<Operation> = gson.fromJson(it.readText(), t.type)
+                allOperations.addAll(op)
+            }
+    
+    return allOperations.sortedBy { it.time }
 }
 
 fun readStockFromTsm(tsmFile: File): Stock {

@@ -23,10 +23,7 @@ import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import parser.Language
-import parser.Operation
-import parser.extractAuctionatorData
-import parser.readStockFromTsm
+import parser.*
 import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
@@ -66,8 +63,9 @@ fun main(args: Array<String>) {
             val analyzer = Analyzer(parsingResult.auctions)
             val wishList = loadWishList(parsingResult)
 
-            val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
-            val operations = Gson().fromJson<List<Operation>>(File("data/database/auction-history.json").readText(), t.type)
+//            val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
+//            val operations = Gson().fromJson<List<Operation>>(File("data/database/auction-history.json").readText(), t.type)
+            val operations = readAllAuctionHistoryFiles()
             val auctionHistory = AuctionHistory(operations)
 
             val server = embeddedServer(Netty, port = port) {
