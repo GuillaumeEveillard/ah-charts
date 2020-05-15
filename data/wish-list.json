@@ -38,7 +38,7 @@
   {
     "name": "Greater Nature Protection Potion",
     "comment": "Requiert Terre élémentaire, Feuillerêve, Fiole de cristal",
-    "sellPrice": 66000
+    "sellPrice": 65000
   },
   {
     "comment": "Requiert Liferoot, Stranglekelp, Leaded Vial, Craft pour moins de 30 pa",
@@ -70,12 +70,12 @@
   {
     "comment": "For FAP",
     "name": "Oily Blackmouth",
-    "buyPrice": 2000
+    "buyPrice": 4000
   },
   {
     "comment": "For FAP",
     "name": "Blackmouth Oil",
-    "buyPrice": 4000
+    "buyPrice": 8000
   },
   {
     "comment": "For FAP",
@@ -95,7 +95,7 @@
   },
   {
     "name": "Terre élémentaire",
-    "buyPrice": 35000
+    "buyPrice": 37000
   },
   {
     "name": "Feuillerêve",
@@ -113,17 +113,18 @@
   },
   {
     "name": "Elixir de la Mangouste",
-    "buyPrice": 50000
+    "buyPrice": 50000,
+    "sellPrice": 70000
   },
   {
     "comment": "*2 pour mangouste",
     "name": "Sauge-argent des montagnes",
-    "buyPrice": 12000
+    "buyPrice": 14000
   },
   {
     "comment": "*2 pour mangouste",
     "name": "Fleur de peste",
-    "buyPrice": 12000
+    "buyPrice": 15000
   },
   {
     "name": "Thorium Ore",
@@ -131,7 +132,7 @@
   },
   {
     "name": "Champignon fantôme",
-    "buyPrice": 12500,
+    "buyPrice": 15000,
     "comment": "*1 pour Limited Invulnerability Potion"
   },
   {
@@ -204,7 +205,8 @@
     "name": "Fadeleaf"
   },
   {
-    "name": "Grave Moss"
+    "name": "Grave Moss",
+    "buyPrice": 6000
   },
   {
     "name": "Shadow Protection Potion",
@@ -229,6 +231,10 @@
     "name": "Elixir of Greater Water Breathing"
   },
   {
-    "name": "Aciérite sauvage"
+    "name": "Aciérite sauvage",
+    "buyPrice": 4000
+  },
+  {
+    "name": "Cuir de diablosaure"
   }
 ]
