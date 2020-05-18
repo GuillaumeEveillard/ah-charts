@@ -146,22 +146,27 @@
   },
   {
     "name": "Greater Arcane Protection Potion",
-    "comment": "Requires Dream Dust, Dreamfoil, Crystal Vial"
+    "comment": "Requires Dream Dust, Dreamfoil, Crystal Vial",
+    "sellPrice": 18000
   },
   {
-    "name": "Dream Dust"
+    "name": "Dream Dust",
+    "buyPrice": 2600
   },
   {
     "name": "Greater Frost Protection Potion",
-    "comment": "Requires Elemental Water, Dreamfoil, Crystal Vial"
+    "comment": "Requires Elemental Water, Dreamfoil, Crystal Vial",
+    "sellPrice": 25000
   },
   {
     "name": "Elemental Water",
-    "comment": "*1 pour Greater Frost Protection Potion"
+    "comment": "*1 pour Greater Frost Protection Potion",
+    "buyPrice": 3000
   },
   {
     "name": "Limited Invulnerability Potion",
-    "comment": "Requires Blindweed (2), Ghost Mushroom, Crystal Vial"
+    "comment": "Requires Blindweed (2), Ghost Mushroom, Crystal Vial",
+    "sellPrice": 45000
   },
   {
     "name": "Blindweed",
@@ -170,14 +175,17 @@
   },
   {
     "name": "Elixir of Giants",
-    "comment": "Sungrass, Gromsblood, Crystal Vial"
+    "comment": "Sungrass, Gromsblood, Crystal Vial",
+    "sellPrice": 16000
   },
   {
-    "name": "Gromsblood"
+    "name": "Gromsblood",
+    "buyPrice": 5500
   },
   {
     "name": "Elixir of Greater Agility",
-    "buyPrice": 4500
+    "buyPrice": 4500,
+    "sellPrice": 10000
   },
   {
     "name": "Sungrass, Goldthorn, Crystal Vial"
@@ -188,21 +196,26 @@
   },
   {
     "name": "Gift of Arthas",
-    "comment": "Arthas' Tears, Blindweed, Crystal Vial"
+    "comment": "Arthas' Tears, Blindweed, Crystal Vial",
+    "sellPrice": 15000
   },
   {
-    "name": "Arthas' Tears"
+    "name": "Arthas' Tears",
+    "buyPrice": 300
   },
   {
     "name": "Arcane Elixir",
-    "comment": "Blindweed, Goldthorn, Crystal Vial"
+    "comment": "Blindweed, Goldthorn, Crystal Vial",
+    "sellPrice": 11000
   },
   {
     "name": "Shadow Oil",
-    "comment": "Requires Fadeleaf (4), Grave Moss (4), Leaded Vial"
+    "comment": "Requires Fadeleaf (4), Grave Moss (4), Leaded Vial",
+    "sellPrice": 60000
   },
   {
-    "name": "Fadeleaf"
+    "name": "Fadeleaf",
+    "buyPrice": 4000
   },
   {
     "name": "Grave Moss",
@@ -210,7 +223,8 @@
   },
   {
     "name": "Shadow Protection Potion",
-    "comment": "Grave Moss, Kingsblood, Leaded Vial"
+    "comment": "Grave Moss, Kingsblood, Leaded Vial",
+    "sellPrice": 12000
   },
   {
     "name": "Kingsblood",
