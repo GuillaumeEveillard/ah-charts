@@ -1,8 +1,6 @@
-import com.google.gson.Gson
 import com.google.gson.JsonNull
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializer
-import com.google.gson.reflect.TypeToken
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
 import com.xenomachina.argparser.mainBody
@@ -59,12 +57,9 @@ fun main(args: Array<String>) {
 
             val stock = readStockFromTsm(tsmFilePath)
 
-            val parsingResult = loadResultFiles()
-            val analyzer = Analyzer(parsingResult.auctions)
-            val wishList = loadWishList(parsingResult)
-
-//            val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
-//            val operations = Gson().fromJson<List<Operation>>(File("data/database/auction-history.json").readText(), t.type)
+            val database = loadDatabaseFromJsonFiles(File("data/database"))
+            val wishList = loadWishList(database)
+            
             val operations = readAllAuctionHistoryFiles()
             val auctionHistory = AuctionHistory(operations)
 
@@ -102,13 +97,13 @@ fun main(args: Array<String>) {
                             call.respond(HttpStatusCode.OK, wishList)
                         }
                         get("/ready-to-buy") {
-                            val x = wishList.filter { analyzer.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
+                            val x = wishList.filter { database.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
                             call.respond(HttpStatusCode.OK, x)
                         }
                     }
                     route("/items") {
                         get {
-                            call.respond(HttpStatusCode.OK, parsingResult.items)
+                            call.respond(HttpStatusCode.OK, database.items)
                         }
                     }
 
@@ -117,14 +112,14 @@ fun main(args: Array<String>) {
                             get {
                                 val itemId = call.parameters["itemId"]?.toLongOrNull()
                                         ?: throw MissingRequestParameterException("Item id " + call.parameters["itemId"] + " invalid.")
-                                call.respond(HttpStatusCode.OK, analyzer.bestBuyout(itemId))
+                                call.respond(HttpStatusCode.OK, database.bestBuyout(itemId))
                             }
                             get("/best-average/{n}") {
                                 val itemId = call.parameters["itemId"]?.toLongOrNull()
                                         ?: throw MissingRequestParameterException("Item id " + call.parameters["itemId"] + " invalid.")
                                 val n = call.parameters["n"]?.toLongOrNull()
                                         ?: throw MissingRequestParameterException("N " + call.parameters["n"] + " invalid.")
-                                call.respond(HttpStatusCode.OK, analyzer.bestAverageBuyout(itemId, n))
+                                call.respond(HttpStatusCode.OK, database.bestAverageBuyout(itemId, n))
                             }
                         }
                     }

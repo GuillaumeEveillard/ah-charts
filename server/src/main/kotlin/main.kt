@@ -16,46 +16,40 @@ data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyo
     fun bidByUnit() = bid.toDouble() / quantity.toDouble()
     fun buyoutByUnit() = if(buyout == null) null else  buyout.toDouble() / quantity.toDouble()
 }
-data class WishListItem(val id: Long, val comment: String?, val buyPrice: Long?, val sellPrice: Long?)
-data class WishListItemConfig(val name: String, val comment: String? = null, val buyPrice: Long? = null, val sellPrice: Long? = null)
+
 data class Database(val items: Collection<Item>, val auctions: List<Auction>) {
     val itemById = items.map { it.id to it }
+    val auctionsPerItem = auctions.groupBy { it.itemId }.mapValues { ItemAuctions(it.value) }
+    
     fun findItemByName(name: String) : Item? {
         return items.find { it.frenchName == name || it.englishName == name }
     }
-}
 
-fun loadWishList(database: Database) : Collection<WishListItem> {
-    val json = File("data/wish-list.json").readText()
-    val t: TypeToken<List<WishListItemConfig>> = object : TypeToken<List<WishListItemConfig>>() {}
-    val w = Gson().fromJson<List<WishListItemConfig>>(json, t.type)
-    
-    return w.mapNotNull {
-        val item = database.findItemByName(it.name)
-        if (item == null) null else WishListItem(item.id, it.comment, it.buyPrice, it.sellPrice)
+    fun latestBestBuyout(itemId: Long) : Double {
+        return bestBuyout(itemId).toSortedMap().values.last()
+    }
+
+    fun bestBuyout(itemId: Long) : Map<Instant, Double> {
+        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
+        return auctions.bestBuyout()
+    }
+
+    fun bestBuyoutPerDay(itemId: Long) : Map<LocalDate, Double> {
+        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
+        return auctions.bestBuyoutPerDay()
+    }
+
+    fun bestAverageBuyout(itemId: Long, n: Long) : Map<Instant, Double> {
+        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
+        return auctions.bestAverageBuyout(n)
     }
 }
 
-fun main(args: Array<String>) {
-
-//    val filePath = args[0]
-
-//    val parsingResult = parseAuctionerFile(filePath)
-    val parsingResult = loadResultFiles()
-    val analyzer = Analyzer(parsingResult.auctions)
-    val r = analyzer.bestBuyoutPerDay(21151)
-    println(r)
-    val rr = analyzer.bestBuyout(21151)
-    println(rr)
-}
-
-fun loadResultFiles(): Database {
-//    val t = object : TypeToken<List<WishListItemConfig>>() {}.type
-
+fun loadDatabaseFromJsonFiles(folder: File): Database {
     val items = mutableMapOf<Long, Item>()
     val auctions = mutableListOf<Auction>()
     
-    File("data/database")
+    folder
             .listFiles { f -> f.name.startsWith("result-")}
             .forEach { 
                 val r = Gson().fromJson<ParserResult>(it.readText(), ParserResult::class.java)
@@ -120,37 +114,5 @@ data class AveragePrice(val price: Double, val quantity: Long) {
             val avgPrice = (this.price * this.quantity + price*(totalQuantity - this.quantity)) / totalQuantity
             return AveragePrice(avgPrice, this.quantity + quantity)
         }
-    }
-}
-
-class Analyzer(val auctions: Collection<Auction>) {
-
-    val auctionsPerItem = auctions.groupBy { it.itemId }.mapValues { ItemAuctions(it.value) }
-    
-//    val auctionPerItem: Map<Long, NavigableMap<Instant, Collection<Auction>>> = auctions
-//        .groupingBy { it.itemId }
-//        .aggregate{_, acc, elem, _ -> 
-//            val x = acc ?: TreeMap<Instant, Auction>()
-//            x.compute(elem.timestamp, { _, v -> if(v == null) mutableListOf<>(elem) else v.
-//            x
-//        }
-//
-    fun latestBestBuyout(itemId: Long) : Double {
-        return bestBuyout(itemId).toSortedMap().values.last()
-    }
-    
-    fun bestBuyout(itemId: Long) : Map<Instant, Double> {
-        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
-        return auctions.bestBuyout()
-    }
-    
-    fun bestBuyoutPerDay(itemId: Long) : Map<LocalDate, Double> {
-        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
-       return auctions.bestBuyoutPerDay()
-    }
-
-    fun bestAverageBuyout(itemId: Long, n: Long) : Map<Instant, Double> {
-        val auctions = auctionsPerItem[itemId]?: throw IllegalArgumentException("Item $itemId unknown")
-        return auctions.bestAverageBuyout(n)
     }
 }

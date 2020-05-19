@@ -1,8 +1,12 @@
 package parser
 
+import ItemInStock
+import Slot
+import Stock
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import extractStockFromTsmDb
 import java.io.File
 import java.lang.IllegalArgumentException
 import java.lang.StringBuilder
@@ -26,51 +30,7 @@ class CsvParser<T>(private val builder: ObjectBuilder<T>, private val header: St
     }
 }
 
-enum class Slot {INVENTORY, BANK, MAIL, AUCTION}
 
-class Stock {
-    val stocks = mutableMapOf<Long, ItemStock>()
-
-    fun add(item: ItemInStock) {
-        stocks.compute(item.item){_, itemStock -> (itemStock?:ItemStock()).add(item)}
-    }
-
-    override fun toString(): String {
-        return "Stock(stocks=$stocks)"
-    }
-
-    fun getItemInStock(itemId: Long): List<ItemInStock> {
-        return stocks[itemId]?.getItemInStock() ?: emptyList()
-    }
-
-
-}
-
-class ItemStock {
-    val stock = mutableMapOf<String, MutableMap<Slot, ItemInStock>>()
-    
-    fun add(item: ItemInStock) : ItemStock {
-        val stockForCharacter = stock.getOrPut(item.character) {mutableMapOf()}
-        stockForCharacter.compute(item.slot) {_, q -> if(q == null) item else q.add(item.quantity)}
-        return this
-    }
-
-    override fun toString(): String {
-        return "ItemStock(stock=$stock)"
-    }
-
-    fun getItemInStock(): List<ItemInStock> {
-        return stock.values.map { it.values }.flatten()
-    }
-
-
-}
-
-data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot) {
-    fun add(quantity: Long): ItemInStock {
-        return this.copy(quantity = this.quantity + quantity)
-    }
-}
 
 fun main() {
     val tsmFile = File("C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
@@ -95,20 +55,52 @@ fun readAllAuctionHistoryFiles(): List<Operation> {
 
 fun readStockFromTsm(tsmFile: File): Stock {
     println("[TSM extraction] [START]")
+
+    val timestamp = Instant.now()
     
-    val targetTsmFolder = File("data/tsm")
-    if(!targetTsmFolder.exists()) {
-        targetTsmFolder.mkdirs()
-    }
+    backupTsmFile(tsmFile, timestamp)
+
+    val text = readDbSectionOfTsmFile(tsmFile)
+
+    val tokens = tokenize2(text)
+    val ast = buildAst(tokens)
+
+
+    val buys = parseBuys(ast)
+    val sells = parseSales(ast)
+    val operations = buys + sells
+
+    saveOperationHistory(operations, timestamp)
+
+    return extractStockFromTsmDb(ast)
+}
+
+private fun saveOperationHistory(operations: List<Operation>, timestamp: Instant) {
+    val gson = GsonBuilder().setPrettyPrinting().create()
+    val json = gson.toJson(operations)
+
     val databaseFolder = File("data/database")
-    if(!databaseFolder.exists()) {
+    if (!databaseFolder.exists()) {
         databaseFolder.mkdirs()
     }
+
+    databaseFolder.resolve("auction-history.json").writeText(json)
+    databaseFolder.resolve("auction-history-${timestamp.epochSecond}.json").writeText(json)
+}
+
+private fun backupTsmFile(tsmFile: File, timestamp: Instant) {
+    val targetTsmFolder = File("data/tsm")
+    if (!targetTsmFolder.exists()) {
+        targetTsmFolder.mkdirs()
+    }
     
-    val timestamp = Instant.now()
     val originalFileBackup = targetTsmFolder.resolve("original-${timestamp.epochSecond}.lua")
     Files.copy(tsmFile.toPath(), originalFileBackup.toPath(), StandardCopyOption.REPLACE_EXISTING)
-    
+}
+
+
+
+private fun readDbSectionOfTsmFile(tsmFile: File): String {
     val lines = tsmFile.readLines()
 
     val text = StringBuilder()
@@ -121,64 +113,12 @@ fun readStockFromTsm(tsmFile: File): Stock {
             break
         } else {
             text.append(cleanLine)
-
         }
     }
-
-    val tokens = tokenize2(text.toString())
-    val ast = buildAst(tokens)
-
-
-    val buys = parseBuys(ast)
-    val sells = parseSales(ast)
-
-    val gson = GsonBuilder().setPrettyPrinting().create()
-    val json = gson.toJson(buys + sells)
-
-    databaseFolder.resolve("auction-history.json").writeText(json)
-    databaseFolder.resolve("auction-history-${timestamp.epochSecond}.json").writeText(json)
-
-    val keys = discoverTsmStockKey(ast)
-
-
-    val itemsInStock = keys.map { key ->
-        val tsmKey = key.tsmKey()
-        val o = getObject(ast, tsmKey)
-        getValues(o)
-                .mapValues { if (it.value is LongLiteral) (it.value as LongLiteral).value else null }
-                .filterValues { it != null }
-                .map {
-                    ItemInStock(
-                            it.key.substringAfter(":").substringBefore(":").toLong(),
-                            it.value!!.toLong(),
-                            key.character,
-                            key.slot)
-                }
-    }.flatten()
-
-    val stock = Stock()
-    itemsInStock.forEach { stock.add(it) }
-    
-    println("[TSM extraction] [DONE]")
-    
-    return stock
+    return text.toString()
 }
 
-private fun discoverTsmStockKey(ast: LuaElement): List<StockReadingKey> {
-    val scopeKeys = getObject(ast, "_scopeKeys")
-    val char = getObject(scopeKeys, "sync")
-    val r = getContent(char).mapNotNull { if (it is StringLiteral) it.value else null }
 
-    return r.map {
-        val character = it.substringBefore(" ")
-        listOf(
-                StockReadingKey(character, Slot.INVENTORY),
-                StockReadingKey(character, Slot.BANK),
-                StockReadingKey(character, Slot.MAIL),
-                StockReadingKey(character, Slot.AUCTION)
-        )
-    }.flatten()
-}
 
 data class StockReadingKey(val character: String, val slot: Slot) {
     fun tsmKey() : String {
