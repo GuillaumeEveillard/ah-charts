@@ -433,8 +433,7 @@ class App extends React.Component<AppProps, AppState> {
         {
             return (
                 <div className="App">
-                    <h1>Bonnes affaires</h1>
-                    <p>{url}</p>
+                    <h1>Bonnes affaires - Achat</h1>
                     {this.state.readyToBuy != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToBuy}/> }
                     <h1>List complète</h1>
                     {this.state.wish != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.wish}/> }

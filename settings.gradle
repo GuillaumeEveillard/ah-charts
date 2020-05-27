@@ -19,6 +19,6 @@ pluginManagement {
 
 rootProject.name = 'ah-charts'
 include 'server'
-//include 'ui'
+include 'ui'
 //include 'driller'
 

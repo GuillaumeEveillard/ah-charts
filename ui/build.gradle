@@ -23,19 +23,18 @@ task installExpress(type: NpmTask) {
     args = ['install']
 }
 
-npm_run_build {
-    // make sure the build task is executed only when appropriate files change
-    inputs.files fileTree('public')
-    inputs.files fileTree('src')
+task bundle(type: YarnTask) {
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+    inputs.file('package.json')
+    inputs.file('package-lock.json')
 
-    // 'node_modules' appeared not reliable for dependency change detection (the task was rerun without changes)
-    // though 'package.json' and 'package-lock.json' should be enough anyway
-    inputs.file 'package.json'
-    inputs.file 'package-lock.json'
+    outputs.dir('build')
 
-    outputs.dir 'build'
+    dependsOn installExpress
+    args = ['run', 'build']
 }
-npm_run_build.dependsOn installExpress
 
 // pack output of the build into JAR file
 task packageNpmApp(type: Zip) {
