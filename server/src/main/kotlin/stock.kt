@@ -3,43 +3,33 @@ import parser.*
 enum class Slot {INVENTORY, BANK, MAIL, AUCTION}
 
 class Stock {
-    val stocks = mutableMapOf<Long, ItemStock>()
+    private val stocks = mutableMapOf<Long, ItemStock>()
 
     fun add(item: ItemInStock) {
         stocks.compute(item.item){_, itemStock -> (itemStock?:ItemStock()).add(item)}
     }
 
-    override fun toString(): String {
-        return "Stock(stocks=$stocks)"
-    }
+    override fun toString() = "Stock(stocks=$stocks)"
 
-    fun getItemInStock(itemId: Long): List<ItemInStock> {
-        return stocks[itemId]?.getItemInStock() ?: emptyList()
-    }
+    fun getItemInStock(itemId: Long): List<ItemInStock> = stocks[itemId]?.getItemInStock() ?: emptyList()
 }
 
 class ItemStock {
-    val stock = mutableMapOf<String, MutableMap<Slot, ItemInStock>>()
+    private val stock = mutableMapOf<String, MutableMap<Slot, ItemInStock>>()
 
     fun add(item: ItemInStock) : ItemStock {
         val stockForCharacter = stock.getOrPut(item.character) {mutableMapOf()}
-        stockForCharacter.compute(item.slot) {_, q -> if(q == null) item else q.add(item.quantity)}
+        stockForCharacter.compute(item.slot) {_, q -> q?.add(item.quantity) ?: item }
         return this
     }
 
-    override fun toString(): String {
-        return "ItemStock(stock=$stock)"
-    }
+    override fun toString() = "ItemStock(stock=$stock)"
 
-    fun getItemInStock(): List<ItemInStock> {
-        return stock.values.map { it.values }.flatten()
-    }
+    fun getItemInStock(): List<ItemInStock> = stock.values.map { it.values }.flatten()
 }
 
 data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot) {
-    fun add(quantity: Long): ItemInStock {
-        return this.copy(quantity = this.quantity + quantity)
-    }
+    fun add(quantity: Long) = this.copy(quantity = this.quantity + quantity)
 }
 
 fun extractStockFromTsmDb(ast: LuaElement): Stock {

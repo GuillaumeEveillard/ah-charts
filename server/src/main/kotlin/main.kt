@@ -19,7 +19,7 @@ data class Auction(val itemId: Long, val quantity: Long, val bid: Long, val buyo
 
 data class Database(val items: Collection<Item>, val auctions: List<Auction>) {
     val itemById = items.map { it.id to it }
-    val auctionsPerItem = auctions.groupBy { it.itemId }.mapValues { ItemAuctions(it.value) }
+    private val auctionsPerItem = auctions.groupBy { it.itemId }.mapValues { ItemAuctions(it.value) }
     
     fun findItemByName(name: String) : Item? {
         return items.find { it.frenchName == name || it.englishName == name }

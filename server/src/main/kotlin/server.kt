@@ -151,7 +151,7 @@ fun main(args: Array<String>) {
 }
 
 class AuctionHistory(val operations: Collection<Operation>) {
-    val operationsByItem = operations.groupBy { it.item }
+    private val operationsByItem = operations.groupBy { it.item }
     
     fun getOperations(item: Long): List<Operation> {
         return operationsByItem[item] ?: emptyList()
