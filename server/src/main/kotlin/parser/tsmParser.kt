@@ -37,21 +37,7 @@ fun main() {
     readStockFromTsm(tsmFile)
 }
 
-fun readAllAuctionHistoryFiles(): List<Operation> {
-    val allOperations = mutableSetOf<Operation>()
-    val gson = Gson()
-    File("data/database")
-            .listFiles()
-            .filter {it.name.startsWith("auction-history-")}
-            .forEach {
-                it.readText()
-                val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
-                val op : List<Operation> = gson.fromJson(it.readText(), t.type)
-                allOperations.addAll(op)
-            }
-    
-    return allOperations.sortedBy { it.time }
-}
+
 
 fun readStockFromTsm(tsmFile: File): Stock {
     println("[TSM extraction] [START]")
