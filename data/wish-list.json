@@ -252,5 +252,25 @@
     "name": "Cuir de diablosaure"
   },
   {"name": "Smoked Desert Dumplings"},
-  {"name":  "Bloodvine"}
+  {"name":  "Bloodvine"},
+  {"name": "Elixir de Puissance du givre"},
+  {"name": "Soupe de lutjan nagenuit",
+    "comment": "8 mp5"
+  },
+  {"name": "Lutjan nagenuit cru"},
+  {"name": "Courante-surprise",
+    "comment": "10 intell"
+  },
+  {"name": "Racine de Courante"},
+  {"name": "Recette : Courante-surprise"},
+  {
+    "name": "Gilet en vignesang",
+    "buyPrice": 1360000
+  },{
+  "name": "Jambières en vignesang",
+  "buyPrice": 1360000
+},{
+  "name": "Bottes en vignesang",
+  "buyPrice": 1020000
+}
 ]
