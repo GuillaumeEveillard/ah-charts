@@ -23,6 +23,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import parser.*
 import java.io.File
+import java.lang.RuntimeException
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -40,18 +41,38 @@ class CliArgs(parser: ArgParser) {
                     help = "WoW folder (default = C:\\Program Files (x86)\\World of Warcraft ).")
             .default("C:\\Program Files (x86)\\World of Warcraft")
 
+    val dataFolder : String by parser.storing(
+                    "-d", "--data-folder",
+                    help = "Data folder")
+            .default("D:\\Source\\ah-charts\\data")
+
     val language by parser.storing(
                     "-l", "--language",
                     help = "WoW language (ENGLISH or FRENCH, default: ENGLISH).")
             .default("ENGLISH")
 }
 
+
+
 fun main(args: Array<String>) {
     mainBody {
         ArgParser(args).parseInto(::CliArgs).run {
+            val timestamp = Instant.now()
             val wowFolder = File(wowFolder)
-            val auctionatorFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\Auctionator.lua")
+            val dataFolder = File(dataFolder)
+            
+            // TSM
             val tsmFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
+            backupTsmFile(dataFolder, tsmFilePath, timestamp)
+            val ast = readTsmFile(tsmFilePath)
+            
+            // Operation history
+            val operations = extractOperations(ast)
+            saveOperationHistory(dataFolder, operations, timestamp)
+            val operationHistory = loadAndUpdateOperationHistory(dataFolder, dataFolder.resolve("operation-history"))
+            val auctionHistory = AuctionHistory(operationHistory.operations)
+
+            val auctionatorFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\Auctionator.lua")
 
             extractAuctionatorData(auctionatorFilePath, Language.valueOf(language))
 
@@ -59,9 +80,6 @@ fun main(args: Array<String>) {
 
             val database = loadDatabaseFromJsonFiles(File("data/database"))
             val wishList = loadWishList(database)
-            
-            val operations = readAllAuctionHistoryFiles()
-            val auctionHistory = AuctionHistory(operations)
 
             val server = embeddedServer(Netty, port = port) {
                 install(ContentNegotiation) {

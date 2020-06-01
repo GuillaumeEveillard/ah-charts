@@ -44,44 +44,48 @@ fun readStockFromTsm(tsmFile: File): Stock {
 
     val timestamp = Instant.now()
     
-    backupTsmFile(tsmFile, timestamp)
+//    backupTsmFile(tsmFile, timestamp)
 
-    val text = readDbSectionOfTsmFile(tsmFile)
-
-    val tokens = tokenize2(text)
-    val ast = buildAst(tokens)
+    val ast = readTsmFile(tsmFile)
 
 
-    val buys = parseBuys(ast)
-    val sells = parseSales(ast)
-    val operations = buys + sells
+    val operations = extractOperations(ast)
 
-    saveOperationHistory(operations, timestamp)
+//    saveOperationHistory(operations, timestamp)
 
     return extractStockFromTsmDb(ast)
 }
 
-private fun saveOperationHistory(operations: List<Operation>, timestamp: Instant) {
-    val gson = GsonBuilder().setPrettyPrinting().create()
-    val json = gson.toJson(operations)
-
-    val databaseFolder = File("data/database")
-    if (!databaseFolder.exists()) {
-        databaseFolder.mkdirs()
-    }
-
-    databaseFolder.resolve("auction-history.json").writeText(json)
-    databaseFolder.resolve("auction-history-${timestamp.epochSecond}.json").writeText(json)
+fun extractOperations(ast: LuaElement): List<Operation> {
+    val buys = parseBuys(ast)
+    val sells = parseSales(ast)
+    val operations = buys + sells
+    println("[Operation history extraction] ${operations.size} operations have been extracted from TSM file")
+    return operations
 }
 
-private fun backupTsmFile(tsmFile: File, timestamp: Instant) {
-    val targetTsmFolder = File("data/tsm")
+fun readTsmFile(tsmFile: File): LuaElement {
+    println("[TSM File] Read from "+tsmFile.absolutePath)
+    val text = readDbSectionOfTsmFile(tsmFile)
+
+    val tokens = tokenize2(text)
+    val ast = buildAst(tokens)
+    println("[TSM File] Read finished and AST ready")
+    return ast
+}
+
+fun backupTsmFile(dataFolder: File, tsmFile: File, timestamp: Instant) {
+    val targetTsmFolder = dataFolder.resolve("tsm")
     if (!targetTsmFolder.exists()) {
         targetTsmFolder.mkdirs()
     }
+
+    print("[TSM File] Backuping file "+tsmFile.absolutePath+" into "+dataFolder.absolutePath+" ...")
     
     val originalFileBackup = targetTsmFolder.resolve("original-${timestamp.epochSecond}.lua")
     Files.copy(tsmFile.toPath(), originalFileBackup.toPath(), StandardCopyOption.REPLACE_EXISTING)
+    
+    println(" done.")
 }
 
 

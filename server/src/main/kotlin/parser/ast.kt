@@ -52,7 +52,6 @@ fun buildLuaObject(tokens: Iterator<Token>) : LuaElement {
     val content = mutableListOf<LuaElement>()
     while (tokens.hasNext()) {
         var currentToken = tokens.next()
-        println("Token is $currentToken")
         if(currentToken is ObjectEnd) {
             return LuaObject(content)
         } else if(currentToken is ObjectStart) {
@@ -62,10 +61,8 @@ fun buildLuaObject(tokens: Iterator<Token>) : LuaElement {
                 val key = currentToken.key
 
                 currentToken = tokens.next()
-                println("Token is $currentToken")
                 if (currentToken !is Assignment) throw IllegalArgumentException("Expect an assignment")
                 currentToken = tokens.next()
-                println("Token is $currentToken")
                 val value = when (currentToken) {
                     is StringToken -> StringLiteral(currentToken.s)
                     is DoubleToken -> LongLiteral(currentToken.l)

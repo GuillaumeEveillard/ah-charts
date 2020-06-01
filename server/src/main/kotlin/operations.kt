@@ -6,7 +6,9 @@ import com.google.gson.reflect.TypeToken
 import parser.Operation
 import java.io.File
 import java.io.FileReader
+import java.lang.RuntimeException
 import java.nio.charset.Charset
+import java.time.Instant
 
 
 fun loadOperationHistory(f: File) : OperationHistory? {
@@ -17,11 +19,44 @@ fun loadOperationHistory(f: File) : OperationHistory? {
     }
 }
 
-fun loadAndUpdateOperationHistory(masterFile: File, unitaryFileFolder: File) : OperationHistory {
+fun loadAndUpdateOperationHistory(dataFolder: File, unitaryFileFolder: File) : OperationHistory {
+    val computerName = computerName()
+
+    val masterFile = dataFolder.resolve("operation-history-master-$computerName.json")
+    
+    val otherMasterFiles = dataFolder.listFiles()
+            .filter { it.name.startsWith("operation-history-master-") && it.name != masterFile.name}
+    
     val operationHistory = loadOperationHistory(masterFile) ?: OperationHistory()
+    println("[Operation history merge] ${operationHistory.operations.size} operations in master file before merge "+masterFile.absolutePath)
+
+    otherMasterFiles.forEach {
+        val otherOperationHistory = loadOperationHistory(it)
+        operationHistory.merge(otherOperationHistory!!)
+        println("[Operation history merge]  ${operationHistory.operations.size} operations after merging ${it.absolutePath}")
+    }
+
+    print("[Operation history merge] Integrating unitary files...")
     operationHistory.integrateOperations(unitaryFileFolder)
+    println(" done")
+    
+    println("[Operation history merge] ${operationHistory.operations.size} operations in master file after merge "+masterFile.absolutePath)
     operationHistory.save(masterFile)
+
     return operationHistory
+}
+
+fun computerName(): String {
+    if (System.getProperty("os.name").startsWith("Windows")) {
+        return System.getenv("COMPUTERNAME")
+    } else {
+        val hostname = System.getenv("HOSTNAME")
+        if (hostname != null) {
+            return hostname
+        } else {
+            throw RuntimeException("Impossible to determine computer name")
+        }
+    }
 }
 
 
@@ -64,15 +99,42 @@ data class OperationHistory(var alreadyIntegratedHash: Set<String>, var operatio
     }
 
     private fun extractHashFromFilename(it: File) = it.name.substringAfterLast("-").substringBeforeLast(".")
+    
+    fun merge(otherOperationHistory: OperationHistory) {
+        val allOperations = mutableSetOf<Operation>()
+        val hashes = mutableSetOf<String>()
+        
+        allOperations.addAll(otherOperationHistory.operations)
+        hashes.addAll(otherOperationHistory.alreadyIntegratedHash)
+
+        alreadyIntegratedHash = hashes
+        operations = allOperations.sortedBy { it.time }
+    }
 }
 
 fun main() {
-    val root = File("C:\\Programmation\\ah-charts\\data")
-    val operationOld = root.resolve("operation-history-old")
+    val root = File("D:\\Source\\ah-charts\\data")
+    val operationOld = root.resolve("database")
     val operationNew = root.resolve("operation-history")
-//    convertOldAuctionHistoryFilesToNewFormat(operationOld, operationNew)
+    //convertOldAuctionHistoryFilesToNewFormat(operationOld, operationNew)
 
     loadAndUpdateOperationHistory(root.resolve("operation-history-master.json"), operationNew)
+}
+
+fun saveOperationHistory(dataFolder: File, operations: List<Operation>, timestamp: Instant) {
+    val gson = GsonBuilder().setPrettyPrinting().create()
+    val json = gson.toJson(operations)
+
+    val operationHistoryFolder = dataFolder.resolve("operation-history")
+    if (!operationHistoryFolder.exists()) {
+        operationHistoryFolder.mkdirs()
+    }
+
+    val hash = Hashing.sha256().hashString(json, Charset.defaultCharset())
+    val hex = BaseEncoding.base16().encode(hash.asBytes()).substring(0, 10)
+    val destinationFile = operationHistoryFolder.resolve("operation-history-${timestamp.epochSecond}-$hex.json")
+    destinationFile.writeText(json)
+    println("The "+operations.size+" operations have been save into "+destinationFile.absolutePath)
 }
 
 

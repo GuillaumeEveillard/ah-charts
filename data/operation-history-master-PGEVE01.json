@@ -1,14 +1,39 @@
 {
   "alreadyIntegratedHash": [
-    "C979577029",
-    "8CBF00E854",
-    "387B246A12",
-    "9C5474F9DF",
-    "E5BBAC8D88",
-    "8ACD2F7858",
-    "C3BCA4E1A9",
-    "776562AD61",
-    "8A3B862C65"
+    "F829AED938",
+    "AD4ACB73C2",
+    "F0744528C2",
+    "7B8731761E",
+    "AAFA4793ED",
+    "22BD3FC35B",
+    "66DBBDA33B",
+    "13E01679F2",
+    "CE48E03D8B",
+    "232CEFB50E",
+    "094A0E69E4",
+    "2AA44E4B49",
+    "080AF011EF",
+    "AD7C7A2176",
+    "0BE780C9D5",
+    "CAD62D31B2",
+    "EE7B55D1F7",
+    "0D04C01895",
+    "BE6E1B0163",
+    "EE8BED64C2",
+    "C117D06D8C",
+    "19E2D457C3",
+    "5117141EB7",
+    "1768F37E53",
+    "22C573080F",
+    "460E7E22AE",
+    "8229CE93F6",
+    "A02AF85C7D",
+    "F34D8A916C",
+    "D4718A7703",
+    "ED3E11B616",
+    "D9C6A48310",
+    "88B2392E1F",
+    "EB433ED59E"
   ],
   "operations": [
     {
@@ -3674,6 +3699,188 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1590585415,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 7,
+      "price": 3062,
+      "otherPlayer": "Afk",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590750376,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 7068,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 20000,
+      "otherPlayer": "Braghor",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590763362,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3821,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 1994,
+      "otherPlayer": "Hics",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590838007,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8838,
+      "stackSize": 4,
+      "quantity": 8,
+      "price": 2425,
+      "otherPlayer": "Madloff",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590838015,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8838,
+      "stackSize": 1,
+      "quantity": 5,
+      "price": 2500,
+      "otherPlayer": "Aaszh",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590838026,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8845,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 13800,
+      "otherPlayer": "Kazachok",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590866320,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13466,
+      "stackSize": 1,
+      "quantity": 20,
+      "price": 17800,
+      "otherPlayer": "Aløla",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1590999174,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 21151,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 4300,
+      "otherPlayer": "Marïabank",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591007331,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 1,
+      "quantity": 8,
+      "price": 5500,
+      "otherPlayer": "Marïabank",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591007532,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 5500,
+      "otherPlayer": "Marïabank",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591007533,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 1,
+      "quantity": 5,
+      "price": 5490,
+      "otherPlayer": "Cövid",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591007539,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 15,
+      "quantity": 15,
+      "price": 3500,
+      "otherPlayer": "Shøey",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591007571,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13455,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 42940,
+      "otherPlayer": "Leena",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591008795,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13466,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 18000,
+      "otherPlayer": "Aaszh",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591024301,
         "nanos": 0
       }
     }
