@@ -10,6 +10,8 @@
     "776562AD61",
     "8A3B862C65",
     "636B9CAE07",
+    "0715A9DE7C",
+    "01CB0DDCA3",
     "F829AED938",
     "AD4ACB73C2",
     "F0744528C2",
@@ -4416,6 +4418,19 @@
     },
     {
       "type": "BUY",
+      "item": 12208,
+      "stackSize": 10,
+      "quantity": 10,
+      "price": 1000,
+      "otherPlayer": "Dramatique",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591024296,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
       "item": 13466,
       "stackSize": 20,
       "quantity": 20,
@@ -4424,6 +4439,32 @@
       "player": "Tavernier",
       "time": {
         "seconds": 1591024301,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 4,
+      "quantity": 36,
+      "price": 4400,
+      "otherPlayer": "Euphory",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591024324,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 4290,
+      "otherPlayer": "Konakona",
+      "player": "Tavernier",
+      "time": {
+        "seconds": 1591024326,
         "nanos": 0
       }
     },
@@ -4476,6 +4517,32 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1591036517,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 14256,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 40300,
+      "otherPlayer": "Sakabäff",
+      "player": "Neutrino",
+      "time": {
+        "seconds": 1591043547,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 20,
+      "quantity": 120,
+      "price": 4700,
+      "otherPlayer": "Scorunkeaes",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591050961,
         "nanos": 0
       }
     }
