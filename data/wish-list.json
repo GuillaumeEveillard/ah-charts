@@ -43,7 +43,7 @@
   {
     "comment": "Requiert Liferoot, Stranglekelp, Leaded Vial, Craft pour moins de 30 pa",
     "name": "Nature Protection Potion",
-    "sellPrice": 7500
+    "sellPrice": 9000
   },
   {
     "name": "Elemental Fire",
@@ -91,7 +91,7 @@
   {
     "comment": "For Elixir de Défense excellente",
     "name": "Soleillette",
-    "buyPrice": 2500
+    "buyPrice": 2000
   },
   {
     "name": "Terre élémentaire",
