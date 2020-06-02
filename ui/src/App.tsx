@@ -6,7 +6,7 @@ import {ChartDataSets,  ChartScales} from "chart.js";
 import "./resizable.css";
 
 const url = ""+window.location;
-//const url = "http://localhost:9898/"
+//const url = "http://localhost:9898/";
 
 class Quotation {
     name: string;
@@ -423,6 +423,7 @@ interface AppState {
     items : Map<number, Item> | null;
     wish : WishListItem[] | null;
     readyToBuy : WishListItem[] | null;
+    readyToSell : WishListItem[] | null;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -433,7 +434,8 @@ class App extends React.Component<AppProps, AppState> {
             q : new Map<string, number>(),
             items : null,
             wish: null,
-            readyToBuy: null
+            readyToBuy: null,
+            readyToSell: null
         };
     }
 
@@ -475,6 +477,17 @@ class App extends React.Component<AppProps, AppState> {
 
                 this.setState({readyToBuy: wish})
             });
+
+        fetch(url+"wish/ready-to-sell")
+            .then(res => res.json())
+            .then(data => {
+                let wish: WishListItem[] = [];
+                data.forEach((i: WishListItem) => {
+                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
+                });
+
+                this.setState({readyToSell: wish})
+            });
     }
         render()
         {
@@ -482,6 +495,8 @@ class App extends React.Component<AppProps, AppState> {
                 <div className="App">
                     <h1>Bonnes affaires - Achat</h1>
                     {this.state.readyToBuy != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToBuy}/> }
+                    <h1>Bonnes affaires - Vente</h1>
+                    {this.state.readyToSell != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToSell}/> }
                     <h1>List complète</h1>
                     {this.state.wish != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.wish}/> }
                 </div>

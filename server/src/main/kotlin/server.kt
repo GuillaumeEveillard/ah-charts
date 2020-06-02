@@ -118,6 +118,10 @@ fun main(args: Array<String>) {
                             val x = wishList.filter { database.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
                             call.respond(HttpStatusCode.OK, x)
                         }
+                        get("/ready-to-sell") {
+                            val x = wishList.filter { database.latestBestBuyout(it.id) > (it.sellPrice ?: Long.MAX_VALUE) }
+                            call.respond(HttpStatusCode.OK, x)
+                        }
                     }
                     route("/items") {
                         get {
