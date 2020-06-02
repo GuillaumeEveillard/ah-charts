@@ -5,7 +5,7 @@ import {ChartDataSets,  ChartScales} from "chart.js";
 
 import "./resizable.css";
 
-const url = ""+window.location
+const url = ""+window.location;
 //const url = "http://localhost:9898/"
 
 class Quotation {
@@ -157,9 +157,56 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
             xAxes: [{type: "time", distribution: "linear", time: {unit: "day", displayFormats: {hour: "MMM D hA"}}}]
         };
 
-        let s = this.state.stock.map(o => <li>{o.character+" "+o.slot+" "+o.quantity}</li>)
-        let buys = this.state.operations.filter(o => o.type === "BUY").map(o => <li>{o.quantity+" @ "+o.price+" "+o.player+" "+o.time}</li>)
-        let sells = this.state.operations.filter(o => o.type === "SELL").map(o => <li>{o.quantity+" @ "+o.price+" "+o.player+" "+o.time}</li>)
+
+        let quantityByCharacter = this.state.stock.reduce(function(map: Map<string, number>, obj: ItemInStock) {
+            let old = map.get(obj.character);
+            if(old === undefined) {
+                map.set(obj.character, obj.quantity)
+            } else {
+                map.set(obj.character, obj.quantity+old)
+            }
+            return map;
+        }, new Map());
+
+        let s = Array.from(quantityByCharacter.entries(),([character, quantity]) => <li>{character+": "+quantity}</li>);
+
+        let buysByDate = this.state.operations
+            .filter(o => o.type === "BUY")
+            .reduce(function(map: Map<string, Operation[]>, op: Operation) {
+                let d = op.time.substr(0, 10);
+                let old = map.get(d);
+                if(old === undefined) {
+                    old = [];
+                    map.set(d, old);
+                }
+                old.push(op);
+
+                return map;
+            }, new Map());
+
+        let buys = Array.from(buysByDate.entries())
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .map(value => <li><div><b>{value[0]}</b></div>{value[1].map(o => <div>{o.quantity+" @ "+o.price+" "+o.player}</div>)}</li>);
+
+        // TODO remove duplication
+
+        let sellsByDate = this.state.operations
+            .filter(o => o.type === "SELL")
+            .reduce(function(map: Map<string, Operation[]>, op: Operation) {
+                let d = op.time.substr(0, 10);
+                let old = map.get(d);
+                if(old === undefined) {
+                    old = [];
+                    map.set(d, old);
+                }
+                old.push(op);
+
+                return map;
+            }, new Map());
+
+        let sells = Array.from(sellsByDate.entries())
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .map(value => <li><div><b>{value[0]}</b></div>{value[1].map(o => <div>{o.quantity+" @ "+o.price+" "+o.player}</div>)}</li>);
 
         const data = {
             // labels: this.props.dates,
@@ -179,10 +226,10 @@ class QuotationRenderer extends React.Component<QuotationRendererProps, Quotatio
                     </div>
                     <div className="col-1">
                         <ul title={"Stock"}>{s}</ul></div>
-                    <div className="col-1">
-            <ul title={"Buys"}>{buys}</ul>
-                    </div>
-                    <div className="col-1">
+                    <div className="col-2">
+                        <h4>Buys</h4>
+                        <ul title={"Buys"}>{buys}</ul>
+                        <h4>Sells</h4>
                         <ul title={"Sells"}>{sells}</ul>
                     </div>
                 </div></div>
