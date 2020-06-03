@@ -7,8 +7,8 @@ import classnames from 'classnames';
 
 import "./resizable.css";
 
-const url = ""+window.location;
-//const url = "http://localhost:9898/";
+//const url = ""+window.location;
+const url = "http://localhost:9898/";
 
 class Quotation {
     name: string;
@@ -531,6 +531,12 @@ class App extends React.Component<AppProps, AppState> {
 
                 this.setState({items: items})
             });
+
+        fetch(url+"profiles")
+            .then(res => res.json())
+            .then(data => {
+                this.setState({profiles: data})
+            });
     }
 
     toggle(tab: string) {
@@ -542,41 +548,38 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
-        if (this.state.profiles != null && this.state.items != null) {
+        let profiles = this.state.profiles;
+        let items = this.state.items;
+        if (profiles != null && items != null) {
 
 
-        let tabs = this.state.profiles.map(p =>
+        let tabs = profiles.map(p =>
             <NavItem>
                 <NavLink
-                    className={classnames({active: this.state.activeTab === '4'})}
+                    className={classnames({active: this.state.activeTab === p})}
                     onClick={() => {
-                        this.toggle('4');
+                        this.toggle(p);
                     }}>
-                    Pull requests
+                    {p}
                 </NavLink>
             </NavItem>);
 
-        navItems.push(<NavItem>
-            <NavLink
-                className={classnames({active: this.state.activeTab === '4'})}
-                onClick={() => {
-                    this.toggle('4');
-                }}>
-                Pull requests
-            </NavLink>
-        </NavItem>);
+        let tabs2 = profiles.map(p =>
+
+            <TabPane tabId={p}>
+                <Row>
+                    <Col sm="12"><Tab items={items as Map<number, Item>} profile={p}/></Col>
+                </Row>
+            </TabPane>   );
+
 
         return (
             <div>
                 <Nav tabs>
-                    {navItems}
+                    {tabs}
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
-                    <TabPane tabId="1">
-                        <Row>
-                            <Col sm="12"><ReduxSeveralSetups config={this.props.config}/></Col>
-                        </Row>
-                    </TabPane>
+                    {tabs2}
                 </TabContent>
             </div>
             // <div className="App">

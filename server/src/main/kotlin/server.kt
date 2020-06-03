@@ -110,6 +110,10 @@ fun main(args: Array<String>) {
                         resources("static/static")
                     }
                     
+                    get("profiles") {
+                        call.respond(HttpStatusCode.OK, wishList.profiles())
+                    }
+                    
                     route("{profile}/wish") {
                         get {
                             val profile = call.parameters["profile"]!!
