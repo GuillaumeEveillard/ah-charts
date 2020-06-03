@@ -1,5 +1,8 @@
 {
   "alreadyIntegratedHash": [
+    "16D5A73F19",
+    "3761155DC3",
+    "1798EE4673",
     "9E8821EB8D",
     "ACAE296636",
     "3313531169",
@@ -4728,6 +4731,123 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1591088456,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 4,
+      "quantity": 12,
+      "price": 3000,
+      "otherPlayer": "Sacrem",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099270,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 3300,
+      "otherPlayer": "Maysama",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099278,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 3499,
+      "otherPlayer": "Krÿstal",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099284,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 3500,
+      "otherPlayer": "Lechimiste",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099287,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 3,
+      "price": 3550,
+      "otherPlayer": "Yadza",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099293,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 3700,
+      "otherPlayer": "Arfella",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591099302,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13445,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 29450,
+      "otherPlayer": "Mailaéle",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591177981,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13445,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 29545,
+      "otherPlayer": "Mailaéle",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591177983,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 7068,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 42180,
+      "otherPlayer": "Apwal",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591195583,
         "nanos": 0
       }
     }

@@ -15,7 +15,10 @@
     "@types/chart.js": "^2.5.0",
     "react-chartjs-2": "^2.9.0",
     "react-grid-layout": "0.17.1",
-    "@types/react-grid-layout": "0.17.1"
+    "@types/react-grid-layout": "0.17.1",
+    "reactstrap": "^8.0.0",
+    "@types/reactstrap": "^8.0.0",
+    "@types/classnames": "^2.2.7"
   },
   "scripts": {
     "start": "react-scripts start",

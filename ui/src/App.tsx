@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { Line } from 'react-chartjs-2';
 import {ChartDataSets,  ChartScales} from "chart.js";
+import { Nav, Navbar, NavbarBrand, NavLink, TabContent, TabPane, NavItem, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
 
 import "./resizable.css";
 
@@ -413,29 +415,103 @@ class WishListItem {
 //     }
 // }
 
+interface TabProps {
+    items : Map<number, Item>
+    profile: string
+}
+
+interface TabState {
+    wish : WishListItem[] | null;
+    readyToBuy : WishListItem[] | null;
+    readyToSell : WishListItem[] | null;
+}
+
+class Tab extends React.Component<TabProps, TabState> {
+    constructor(props: TabProps) {
+        super(props);
+        this.state = {
+            wish: null,
+            readyToBuy: null,
+            readyToSell: null
+        };
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch(url+this.props.profile+"/wish")
+            .then(res => res.json())
+            .then(data => {
+                let wish: WishListItem[] = [];
+                data.forEach((i: WishListItem) => {
+                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
+                });
+
+                this.setState({wish: wish})
+            });
+
+        fetch(url+this.props.profile+"/wish/ready-to-buy")
+            .then(res => res.json())
+            .then(data => {
+                let wish: WishListItem[] = [];
+                data.forEach((i: WishListItem) => {
+                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
+                });
+
+                this.setState({readyToBuy: wish})
+            });
+
+        fetch(url+this.props.profile+"/wish/ready-to-sell")
+            .then(res => res.json())
+            .then(data => {
+                let wish: WishListItem[] = [];
+                data.forEach((i: WishListItem) => {
+                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
+                });
+
+                this.setState({readyToSell: wish})
+            });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Bonnes affaires - Achat</h1>
+                {this.state.readyToBuy != null && this.props.items != null && <QuotationList items={this.props.items} wishItems={this.state.readyToBuy}/> }
+                <h1>Bonnes affaires - Vente</h1>
+                {this.state.readyToSell != null && this.props.items != null && <QuotationList items={this.props.items} wishItems={this.state.readyToSell}/> }
+                <h1>List complète</h1>
+                {this.state.wish != null && this.props.items != null && <QuotationList items={this.props.items} wishItems={this.state.wish}/> }
+            </div>
+        );
+    }
+}
+
 
 interface AppProps {
 
 }
 
 interface AppState {
+    activeTab: string;
     q : Map<string, number>;
+    profiles: string[] | null;
     items : Map<number, Item> | null;
-    wish : WishListItem[] | null;
-    readyToBuy : WishListItem[] | null;
-    readyToSell : WishListItem[] | null;
+
 }
 
 class App extends React.Component<AppProps, AppState> {
 
     constructor(props: AppProps) {
         super(props);
+        this.toggle = this.toggle.bind(this);
         this.state = {
+            activeTab: '1',
             q : new Map<string, number>(),
-            items : null,
-            wish: null,
-            readyToBuy: null,
-            readyToSell: null
+            profiles : null,
+            items : null
         };
     }
 
@@ -455,53 +531,76 @@ class App extends React.Component<AppProps, AppState> {
 
                 this.setState({items: items})
             });
-
-        fetch(url+"wish")
-            .then(res => res.json())
-            .then(data => {
-                let wish: WishListItem[] = [];
-                data.forEach((i: WishListItem) => {
-                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
-                });
-
-                this.setState({wish: wish})
-            });
-
-        fetch(url+"wish/ready-to-buy")
-            .then(res => res.json())
-            .then(data => {
-                let wish: WishListItem[] = [];
-                data.forEach((i: WishListItem) => {
-                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
-                });
-
-                this.setState({readyToBuy: wish})
-            });
-
-        fetch(url+"wish/ready-to-sell")
-            .then(res => res.json())
-            .then(data => {
-                let wish: WishListItem[] = [];
-                data.forEach((i: WishListItem) => {
-                    wish.push(new WishListItem(i.id, i.comment, i.buyPrice, i.sellPrice));
-                });
-
-                this.setState({readyToSell: wish})
-            });
     }
-        render()
-        {
-            return (
-                <div className="App">
-                    <h1>Bonnes affaires - Achat</h1>
-                    {this.state.readyToBuy != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToBuy}/> }
-                    <h1>Bonnes affaires - Vente</h1>
-                    {this.state.readyToSell != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.readyToSell}/> }
-                    <h1>List complète</h1>
-                    {this.state.wish != null && this.state.items != null && <QuotationList items={this.state.items} wishItems={this.state.wish}/> }
-                </div>
-            );
+
+    toggle(tab: string) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
         }
+    }
+
+    render() {
+        if (this.state.profiles != null && this.state.items != null) {
+
+
+        let tabs = this.state.profiles.map(p =>
+            <NavItem>
+                <NavLink
+                    className={classnames({active: this.state.activeTab === '4'})}
+                    onClick={() => {
+                        this.toggle('4');
+                    }}>
+                    Pull requests
+                </NavLink>
+            </NavItem>);
+
+        navItems.push(<NavItem>
+            <NavLink
+                className={classnames({active: this.state.activeTab === '4'})}
+                onClick={() => {
+                    this.toggle('4');
+                }}>
+                Pull requests
+            </NavLink>
+        </NavItem>);
+
+        return (
+            <div>
+                <Nav tabs>
+                    {navItems}
+                </Nav>
+                <TabContent activeTab={this.state.activeTab}>
+                    <TabPane tabId="1">
+                        <Row>
+                            <Col sm="12"><ReduxSeveralSetups config={this.props.config}/></Col>
+                        </Row>
+                    </TabPane>
+                </TabContent>
+            </div>
+            // <div className="App">
+            //     <ul className="nav nav-tabs">
+            //
+            //         <li className="nav-item">
+            //             <a className="nav-link active" href="#">Active</a>
+            //         </li>
+            //         <li className="nav-item">
+            //             <a className="nav-link" href="#">Link</a>
+            //         </li>
+            //         <li className="nav-item">
+            //             <a className="nav-link" href="#">Link</a>
+            //         </li>
+            //         <li className="nav-item">
+            //             <a className="nav-link disabled" href="#">Disabled</a>
+            //         </li>
+            //     </ul>
+            // </div>
+        );
+    } else {
+            return <div>Loading</div>
+        }
+    }
 
 }
 

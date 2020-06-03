@@ -109,17 +109,34 @@ fun main(args: Array<String>) {
                     static("static") {
                         resources("static/static")
                     }
-
-                    route("wish") {
+                    
+                    route("{profile}/wish") {
                         get {
-                            call.respond(HttpStatusCode.OK, wishList)
+                            val profile = call.parameters["profile"]!!
+                            call.respond(HttpStatusCode.OK, wishList.wishListItem(profile))
                         }
                         get("/ready-to-buy") {
-                            val x = wishList.filter { database.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
+                            val profile = call.parameters["profile"]!!
+                            val x = wishList.wishListItem(profile).filter { database.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
                             call.respond(HttpStatusCode.OK, x)
                         }
                         get("/ready-to-sell") {
-                            val x = wishList.filter { database.latestBestBuyout(it.id) > (it.sellPrice ?: Long.MAX_VALUE) }
+                            val profile = call.parameters["profile"]!!
+                            val x = wishList.wishListItem(profile).filter { database.latestBestBuyout(it.id) > (it.sellPrice ?: Long.MAX_VALUE) }
+                            call.respond(HttpStatusCode.OK, x)
+                        }
+                    }
+
+                    route("wish") {
+                        get {
+                            call.respond(HttpStatusCode.OK, wishList.wishListItems)
+                        }
+                        get("/ready-to-buy") {
+                            val x = wishList.wishListItems.filter { database.latestBestBuyout(it.id) <= (it.buyPrice ?: 0) }
+                            call.respond(HttpStatusCode.OK, x)
+                        }
+                        get("/ready-to-sell") {
+                            val x = wishList.wishListItems.filter { database.latestBestBuyout(it.id) > (it.sellPrice ?: Long.MAX_VALUE) }
                             call.respond(HttpStatusCode.OK, x)
                         }
                     }

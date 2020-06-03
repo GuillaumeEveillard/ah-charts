@@ -4,50 +4,60 @@
     "comment": "Requiert Huile de pierre-écaille (2), Soleillette, Fiole de cristal",
     "buyPrice": 15000,
     "sellPrice": 30000,
-    "targetStock": 20
+    "targetStock": 20,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elixir de défense supérieure",
     "comment": "Wild Steelbloom, Goldthorn, Leaded Vial",
     "buyPrice": 6000,
-    "sellPrice": 15000
+    "sellPrice": 15000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Potion de Bouclier de pierre inférieure",
-    "buyPrice": 2000
+    "buyPrice": 2000,
+    "profiles": ["Kazan"]
   },
   {
     "name": "Potion de Bouclier de pierre supérieure",
     "comment": "Requiert Huile de pierre-écaille (3), Minerai de thorium, Fiole de cristal",
     "sellPrice": 35000,
     "buyPrice": 25000,
-    "targetStock": 20
+    "targetStock": 20,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "buyPrice": 3000
+    "buyPrice": 3000,
+    "profiles": ["Kazan"]
   },
   {
     "name": "Stonescale Eel",
-    "buyPrice": 5500
+    "buyPrice": 5500,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Stonescale Oil",
-    "buyPrice": 5500
+    "buyPrice": 5500,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Greater Nature Protection Potion",
     "comment": "Requiert Terre élémentaire, Feuillerêve, Fiole de cristal",
-    "sellPrice": 60000
+    "sellPrice": 60000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "Requiert Liferoot, Stranglekelp, Leaded Vial, Craft pour moins de 30 pa",
     "name": "Nature Protection Potion",
-    "sellPrice": 9000
+    "sellPrice": 9000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elemental Fire",
-    "sellPrice": 30000
+    "sellPrice": 30000,
+    "profiles": ["GGYE"]
   },
   {
     "name": "Mooncloth",
@@ -59,219 +69,267 @@
   },
   {
     "name": "Dense Stone",
-    "buyPrice": 1000
+    "buyPrice": 1000,
+    "profiles": ["Kazan"]
   },
   {
     "comment": "Huile de bouche-noire (2), Etouffante, Fiole plombée (Craft pour 1po30)",
     "name": "Free Action Potion",
     "buyPrice": 10000,
-    "sellPrice": 32500
+    "sellPrice": 32500,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "For FAP",
     "name": "Oily Blackmouth",
-    "buyPrice": 5000
+    "buyPrice": 5000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "For FAP",
     "name": "Blackmouth Oil",
-    "buyPrice": 1000
+    "buyPrice": 1000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "For FAP",
     "name": "Stranglekelp",
     "buyPrice": 4000,
-    "sell": {
-      "2020-05-06": {
-        "q": 4,
-        "p": 19600
-      }
-    }
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "For Elixir de Défense excellente",
     "name": "Soleillette",
-    "buyPrice": 2000
+    "buyPrice": 2000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Terre élémentaire",
-    "buyPrice": 37000
+    "buyPrice": 37000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Feuillerêve",
-    "buyPrice": 6000
+    "buyPrice": 6000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Tender Wolf Meat",
-    "buyPrice": 1000
+    "buyPrice": 1000,
+    "profiles": ["Kazan"]
   },
   {
     "name": "Vietérule",
     "buyPrice": 100,
-    "targetStock": 100  
-    
+    "targetStock": 100,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elixir de la Mangouste",
     "buyPrice": 50000,
-    "sellPrice": 72500
+    "sellPrice": 72500,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "*2 pour mangouste",
     "name": "Sauge-argent des montagnes",
-    "buyPrice": 12000
+    "buyPrice": 12000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "comment": "*2 pour mangouste",
     "name": "Fleur de peste",
-    "buyPrice": 18000
+    "buyPrice": 18000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Thorium Ore",
-    "buyPrice": 1000
+    "buyPrice": 1000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Champignon fantôme",
     "buyPrice": 15000,
-    "comment": "*1 pour Limited Invulnerability Potion"
+    "comment": "*1 pour Limited Invulnerability Potion",
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Libram of Resilience"
   },
   {
-    "name": "Blue Power Crystal"
-  },
-  {
-    "name": "Pattern: Mooncloth Bag"
-  },
-  {
     "name": "Greater Arcane Protection Potion",
     "comment": "Requires Dream Dust, Dreamfoil, Crystal Vial",
-    "sellPrice": 18000
+    "sellPrice": 18000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Dream Dust",
-    "buyPrice": 2600
+    "buyPrice": 2600,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Greater Frost Protection Potion",
     "comment": "Requires Elemental Water, Dreamfoil, Crystal Vial",
-    "sellPrice": 25000
+    "sellPrice": 25000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elemental Water",
     "comment": "*1 pour Greater Frost Protection Potion",
-    "buyPrice": 3000
+    "buyPrice": 3000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Limited Invulnerability Potion",
     "comment": "Requires Blindweed (2), Ghost Mushroom, Crystal Vial",
-    "sellPrice": 45000
+    "sellPrice": 45000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Blindweed",
     "comment": "*2 pour Limited Invulnerability Potion",
-    "buyPrice": 7000
+    "buyPrice": 7000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elixir of Giants",
     "comment": "Sungrass, Gromsblood, Crystal Vial",
-    "sellPrice": 16000
+    "sellPrice": 16000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Gromsblood",
-    "buyPrice": 5500
+    "buyPrice": 5500,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elixir of Greater Agility",
+    "comment": "Sungrass, Goldthorn, Crystal Vial",
     "buyPrice": 4500,
-    "sellPrice": 10000
-  },
-  {
-    "name": "Sungrass, Goldthorn, Crystal Vial"
+    "sellPrice": 10000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Goldthorn",
-    "buyPrice": 2000
+    "buyPrice": 2000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Gift of Arthas",
     "comment": "Arthas' Tears, Blindweed, Crystal Vial",
-    "sellPrice": 15000
+    "sellPrice": 15000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Arthas' Tears",
-    "buyPrice": 300
+    "buyPrice": 300,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Arcane Elixir",
     "comment": "Blindweed, Goldthorn, Crystal Vial",
-    "sellPrice": 11000
+    "sellPrice": 11000,
+    "profiles": ["Crew Balkany", "Neutrino"]
   },
   {
     "name": "Shadow Oil",
     "comment": "Requires Fadeleaf (4), Grave Moss (4), Leaded Vial",
-    "sellPrice": 60000
+    "sellPrice": 60000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Fadeleaf",
-    "buyPrice": 4000
+    "buyPrice": 4000,
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Grave Moss",
-    "buyPrice": 6000
+    "comment": "For Shadow Protection Potion",
+    "buyPrice": 7000,
+    "profiles": ["Crew Balkany", "Kazan"]
   },
   {
     "name": "Shadow Protection Potion",
     "comment": "Grave Moss, Kingsblood, Leaded Vial",
-    "sellPrice": 12000
+    "buyPrice": 7500,
+    "sellPrice": 12000,
+    "profiles": ["Crew Balkany", "Kazan"]
   },
   {
     "name": "Kingsblood",
-    "buyPrice": 100
+    "comment": "For Shadow Protection Potion",
+    "buyPrice": 500,
+    "profiles": ["Crew Balkany", "Kazan"]
   },
   {
     "name": "Swim Speed Potion",
-    "comment": "Swiftthistle, Blackmouth Oil, Empty Vial"
+    "comment": "Swiftthistle, Blackmouth Oil, Empty Vial",
+    "profiles": ["Crew Balkany"]
   },
   {
-    "name": "Swiftthistle"
+    "name": "Swiftthistle",
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Elixir of Water Breathing",
-    "sellPrice": 7500
+    "sellPrice": 7500,
+    "profiles": ["Crew Balkany"]
   },
   {
-    "name": "Elixir of Greater Water Breathing"
+    "name": "Elixir of Greater Water Breathing",
+    "profiles": ["Crew Balkany"]
   },
   {
     "name": "Aciérite sauvage",
-    "buyPrice": 4000
+    "buyPrice": 4000,
+    "profiles": ["Crew Balkany"]
   },
   {
-    "name": "Cuir de diablosaure"
+    "name": "Smoked Desert Dumplings",
+    "profiles": ["Crew Balkany"]
   },
-  {"name": "Smoked Desert Dumplings"},
-  {"name":  "Bloodvine"},
-  {"name": "Elixir de Puissance du givre"},
-  {"name": "Soupe de lutjan nagenuit",
-    "comment": "8 mp5"
+  {
+    "name":  "Bloodvine",
+    "profiles": ["Neutrino"]
   },
-  {"name": "Lutjan nagenuit cru"},
-  {"name": "Courante-surprise",
-    "comment": "10 intell"
+  {
+    "name": "Elixir de Puissance du givre",
+    "profiles": ["Neutrino"]
   },
-  {"name": "Racine de Courante"},
-  {"name": "Recette : Courante-surprise"},
+  {
+    "name": "Soupe de lutjan nagenuit",
+    "comment": "8 mp5",
+    "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Lutjan nagenuit cru",
+    "profiles": ["Neutrino"]},
+  {
+    "name": "Courante-surprise",
+    "comment": "10 intell",
+    "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Racine de Courante",
+    "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Recette : Courante-surprise",
+    "profiles": ["Neutrino"]
+  },
   {
     "name": "Gilet en vignesang",
-    "buyPrice": 1360000
-  },{
-  "name": "Jambières en vignesang",
-  "buyPrice": 1360000
-},{
-  "name": "Bottes en vignesang",
-  "buyPrice": 1020000
-},
-  {"name":  "Elixir des arcanes"}
+    "buyPrice": 1360000,
+    "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Jambières en vignesang", 
+    "buyPrice": 1360000,
+    "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Bottes en vignesang", 
+    "buyPrice": 1020000,
+    "profiles": ["Neutrino"]
+  }
 ]
