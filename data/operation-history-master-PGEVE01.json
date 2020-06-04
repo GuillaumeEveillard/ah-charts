@@ -1,5 +1,6 @@
 {
   "alreadyIntegratedHash": [
+    "F105EAF9B9",
     "16D5A73F19",
     "3761155DC3",
     "1798EE4673",
@@ -2196,6 +2197,19 @@
       "player": "Allocompo",
       "time": {
         "seconds": 1588970189,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 12365,
+      "stackSize": 6,
+      "quantity": 6,
+      "price": 833,
+      "otherPlayer": "Melindrack",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1588970218,
         "nanos": 0
       }
     },
@@ -4809,6 +4823,45 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1591099302,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13466,
+      "stackSize": 1,
+      "quantity": 20,
+      "price": 17800,
+      "otherPlayer": "Blacknoob",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591119846,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13466,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 17799,
+      "otherPlayer": "Millisenta",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591119849,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8839,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 1387,
+      "otherPlayer": "Millisenta",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1591119894,
         "nanos": 0
       }
     },

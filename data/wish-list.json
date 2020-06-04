@@ -61,11 +61,13 @@
   },
   {
     "name": "Mooncloth",
-    "sellPrice": 220000
+    "sellPrice": 220000,
+    "profiles": ["Neutrino"]
   },
   {
     "name": "Felcloth",
-    "buyPrice": 20000
+    "buyPrice": 20000,
+    "profiles": ["Neutrino"]
   },
   {
     "name": "Dense Stone",
