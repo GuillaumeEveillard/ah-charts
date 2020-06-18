@@ -213,8 +213,8 @@
   },
   {
     "name": "Goldthorn",
-    "buyPrice": 2000,
-    "profiles": ["Crew Balkany"]
+    "buyPrice": 3000,
+    "profiles": ["Crew Balkany", "Kazan"]
   },
   {
     "name": "Gift of Arthas",
@@ -292,7 +292,8 @@
   },
   {
     "name":  "Bloodvine",
-    "profiles": ["Neutrino"]
+    "profiles": ["Neutrino"],
+    "buyPrice": 180000
   },
   {
     "name": "Elixir de Puissance du givre",
