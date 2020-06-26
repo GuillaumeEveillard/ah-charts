@@ -129,7 +129,7 @@
   {
     "name": "Elixir de la Mangouste",
     "buyPrice": 50000,
-    "sellPrice": 72500,
+    "sellPrice": 70000,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -334,5 +334,26 @@
     "name": "Bottes en vignesang", 
     "buyPrice": 1020000,
     "profiles": ["Neutrino"]
+  },
+  {
+    "name": "Barre d'arcanite",
+    "profiles": ["Olivier"]
+  },
+  {
+    "name": "Cristal des arcanes",
+    "profiles": ["Olivier"]
+  },
+  {
+    "name": "Restorative Potion",
+    "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Firebloom",
+    "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Firefin Snapper",
+    "comment": "6 pour Elixir of Greater Firepower",
+    "profiles": ["Crew Balkany"]
   }
 ]
