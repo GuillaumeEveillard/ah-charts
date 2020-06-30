@@ -34,12 +34,12 @@
   },
   {
     "name": "Stonescale Eel",
-    "buyPrice": 5500,
+    "buyPrice": 7500,
     "profiles": ["Crew Balkany"]
   },
   {
     "name": "Stonescale Oil",
-    "buyPrice": 5500,
+    "buyPrice": 15000,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -84,7 +84,7 @@
   {
     "comment": "For FAP",
     "name": "Oily Blackmouth",
-    "buyPrice": 5000,
+    "buyPrice": 5500,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -107,12 +107,14 @@
   },
   {
     "name": "Terre élémentaire",
-    "buyPrice": 37000,
+    "buyPrice": 40000,
+    "targetStock": 100,
     "profiles": ["Crew Balkany"]
   },
   {
     "name": "Feuillerêve",
-    "buyPrice": 6000,
+    "buyPrice": 8500,
+    "targetStock": 120,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -122,8 +124,8 @@
   },
   {
     "name": "Vietérule",
-    "buyPrice": 100,
-    "targetStock": 100,
+    "buyPrice": 1500,
+    "targetStock": 400,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -241,13 +243,15 @@
   },
   {
     "name": "Fadeleaf",
-    "buyPrice": 4000,
+    "buyPrice": 6500,
+    "targetStock": 80,
     "profiles": ["Crew Balkany"]
   },
   {
     "name": "Grave Moss",
     "comment": "For Shadow Protection Potion",
-    "buyPrice": 7000,
+    "buyPrice": 7500,
+    "targetStock": 80,
     "profiles": ["Crew Balkany", "Kazan"]
   },
   {
@@ -321,21 +325,6 @@
     "profiles": ["Neutrino"]
   },
   {
-    "name": "Gilet en vignesang",
-    "buyPrice": 1360000,
-    "profiles": ["Neutrino"]
-  },
-  {
-    "name": "Jambières en vignesang", 
-    "buyPrice": 1360000,
-    "profiles": ["Neutrino"]
-  },
-  {
-    "name": "Bottes en vignesang", 
-    "buyPrice": 1020000,
-    "profiles": ["Neutrino"]
-  },
-  {
     "name": "Barre d'arcanite",
     "profiles": ["Olivier"]
   },
@@ -349,11 +338,27 @@
   },
   {
     "name": "Firebloom",
+    "buyPrice": 80,
+    "targetStock": 100,
     "profiles": ["Crew Balkany"]
   },
   {
     "name": "Firefin Snapper",
     "comment": "6 pour Elixir of Greater Firepower",
+    "buyPrice": 2500,
+    "targetStock": 600,
+    "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Swiftthistle",
+    "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Grand éclat brillant",
+    "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Purple Lotus",
     "profiles": ["Crew Balkany"]
   }
 ]
