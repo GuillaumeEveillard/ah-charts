@@ -29,7 +29,7 @@
   },
   {
     "name": "Rhum de Rumsey label noir",
-    "buyPrice": 3000,
+    "buyPrice": 6000,
     "profiles": ["Kazan"]
   },
   {
@@ -39,7 +39,7 @@
   },
   {
     "name": "Stonescale Oil",
-    "buyPrice": 15000,
+    "buyPrice": 7500,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -119,7 +119,7 @@
   },
   {
     "name": "Tender Wolf Meat",
-    "buyPrice": 1000,
+    "buyPrice": 1500,
     "profiles": ["Kazan"]
   },
   {
@@ -137,7 +137,7 @@
   {
     "comment": "*2 pour mangouste",
     "name": "Sauge-argent des montagnes",
-    "buyPrice": 12000,
+    "buyPrice": 13500,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -355,10 +355,20 @@
   },
   {
     "name": "Grand éclat brillant",
-    "profiles": ["Crew Balkany"]
+    "comment": "*4 croisé",
+    "profiles": ["Crew Balkany", "Kazan"]
   },
   {
     "name": "Purple Lotus",
     "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Le guide de Dagharn du tueur de dragons",
+    "profiles": ["Kazan"]
+  }, 
+  {
+    "name": "Righteous Orb",
+    "comment": "*2 croisé",
+    "profiles": ["Kazan"]
   }
 ]
