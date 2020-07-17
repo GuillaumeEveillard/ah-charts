@@ -84,7 +84,7 @@
   {
     "comment": "For FAP",
     "name": "Oily Blackmouth",
-    "buyPrice": 5500,
+    "buyPrice": 6000,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -96,7 +96,8 @@
   {
     "comment": "For FAP",
     "name": "Stranglekelp",
-    "buyPrice": 4000,
+    "buyPrice": 5000,
+    "target": 500,
     "profiles": ["Crew Balkany"]
   },
   {
@@ -107,13 +108,13 @@
   },
   {
     "name": "Terre élémentaire",
-    "buyPrice": 40000,
+    "buyPrice": 50000,
     "targetStock": 100,
     "profiles": ["Crew Balkany"]
   },
   {
     "name": "Feuillerêve",
-    "buyPrice": 8500,
+    "buyPrice": 1000,
     "targetStock": 120,
     "profiles": ["Crew Balkany"]
   },
@@ -126,7 +127,8 @@
     "name": "Vietérule",
     "buyPrice": 1500,
     "targetStock": 400,
-    "profiles": ["Crew Balkany"]
+    "profiles": ["Crew Balkany"],
+    "comment": "reste 100"
   },
   {
     "name": "Elixir de la Mangouste",
