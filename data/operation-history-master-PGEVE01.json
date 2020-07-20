@@ -11,6 +11,7 @@
     "F24361DBB8",
     "EC52025CB8",
     "42BD41A87C",
+    "C84E2DF10F",
     "4FCEE01153",
     "BCE8D04C85",
     "22EA7365DD",
@@ -9002,6 +9003,19 @@
       }
     },
     {
+      "type": "BUY",
+      "item": 3820,
+      "stackSize": 1,
+      "quantity": 20,
+      "price": 5005,
+      "otherPlayer": "Bankabuche",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1594928573,
+        "nanos": 0
+      }
+    },
+    {
       "type": "SELL",
       "item": 5634,
       "stackSize": 5,
@@ -9037,6 +9051,45 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1594931256,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 7067,
+      "stackSize": 1,
+      "quantity": 29,
+      "price": 50600,
+      "otherPlayer": "Iliai",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1594935688,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13452,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 65930,
+      "otherPlayer": "Klinden",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595179941,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13452,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 65930,
+      "otherPlayer": "Stoneflower",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595180526,
         "nanos": 0
       }
     }
