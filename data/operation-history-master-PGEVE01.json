@@ -12,6 +12,10 @@
     "EC52025CB8",
     "42BD41A87C",
     "C84E2DF10F",
+    "833A6B391C",
+    "9AEB348220",
+    "BE0104902B",
+    "3423F889FB",
     "4FCEE01153",
     "BCE8D04C85",
     "22EA7365DD",
@@ -31,6 +35,7 @@
     "5B960F59D3",
     "6C7560121A",
     "F1A53EF52F",
+    "667C6F5F70",
     "1320F97C76",
     "26F91F89DE",
     "307C75E828",
@@ -8634,6 +8639,19 @@
       "otherPlayer": "Skycoos",
       "player": "Isabelleß",
       "time": {
+        "seconds": 1593987066,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 20,
+      "quantity": 80,
+      "price": 5300,
+      "otherPlayer": "Skycoos",
+      "player": "Isabelleß",
+      "time": {
         "seconds": 1593987092,
         "nanos": 0
       }
@@ -9090,6 +9108,240 @@
       "player": "Isabelleß",
       "time": {
         "seconds": 1595180526,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 7067,
+      "stackSize": 2,
+      "quantity": 2,
+      "price": 48750,
+      "otherPlayer": "Kryzen",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595246274,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 7067,
+      "stackSize": 10,
+      "quantity": 30,
+      "price": 50000,
+      "otherPlayer": "Aguerool",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595246301,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 7067,
+      "stackSize": 2,
+      "quantity": 2,
+      "price": 50000,
+      "otherPlayer": "Kodamas",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595246301,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 5634,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 45315,
+      "otherPlayer": "Moneykaiser",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595270495,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13445,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 40280,
+      "otherPlayer": "Molotov",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595276669,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 12365,
+      "stackSize": 1,
+      "quantity": 29,
+      "price": 995,
+      "otherPlayer": "Meltdown",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1595363425,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 12365,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 1000,
+      "otherPlayer": "Herama",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1595363432,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 12365,
+      "stackSize": 6,
+      "quantity": 6,
+      "price": 1000,
+      "otherPlayer": "Kartelz",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1595363433,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 6358,
+      "stackSize": 1,
+      "quantity": 28,
+      "price": 8000,
+      "otherPlayer": "Piewwe",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1595363496,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13422,
+      "stackSize": 6,
+      "quantity": 6,
+      "price": 9333,
+      "otherPlayer": "Mirtillia",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595404316,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13422,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 9200,
+      "otherPlayer": "Relbox",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595404317,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13422,
+      "stackSize": 14,
+      "quantity": 14,
+      "price": 9599,
+      "otherPlayer": "Hyrtox",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595404318,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 13445,
+      "stackSize": 5,
+      "quantity": 5,
+      "price": 42655,
+      "otherPlayer": "Gweeko",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595414196,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 3357,
+      "stackSize": 1,
+      "quantity": 24,
+      "price": 999,
+      "otherPlayer": "Vosplante",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595419152,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13466,
+      "stackSize": 20,
+      "quantity": 40,
+      "price": 15775,
+      "otherPlayer": "Aunty",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595419233,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 13465,
+      "stackSize": 1,
+      "quantity": 20,
+      "price": 12200,
+      "otherPlayer": "Meltdown",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595419247,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8838,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 1750,
+      "otherPlayer": "Nikibell",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595419339,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "BUY",
+      "item": 8838,
+      "stackSize": 20,
+      "quantity": 20,
+      "price": 1745,
+      "otherPlayer": "Momiji",
+      "player": "Isabelleß",
+      "time": {
+        "seconds": 1595419345,
         "nanos": 0
       }
     }
