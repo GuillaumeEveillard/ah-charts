@@ -45,13 +45,13 @@
   {
     "name": "Greater Nature Protection Potion",
     "comment": "Requiert Terre élémentaire, Feuillerêve, Fiole de cristal",
-    "sellPrice": 60000,
+    "sellPrice": 80000,
     "profiles": ["Crew Balkany"]
   },
   {
     "comment": "Requiert Liferoot, Stranglekelp, Leaded Vial, Craft pour moins de 30 pa",
     "name": "Nature Protection Potion",
-    "sellPrice": 9000,
+    "sellPrice": 12000,
     "profiles": ["Crew Balkany"]
   },
   {
