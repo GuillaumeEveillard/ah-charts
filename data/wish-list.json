@@ -340,7 +340,7 @@
   },
   {
     "name": "Firebloom",
-    "buyPrice": 80,
+    "buyPrice": 8000,
     "targetStock": 100,
     "profiles": ["Crew Balkany"]
   },
@@ -372,5 +372,11 @@
     "name": "Righteous Orb",
     "comment": "*2 croisé",
     "profiles": ["Kazan"]
+  },
+  {
+    "name": "Elixir of Greater Firepower",
+    "profiles": ["Crew Balkany"]
   }
+
+  
 ]
