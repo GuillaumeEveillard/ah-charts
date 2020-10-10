@@ -380,7 +380,11 @@
   {
     "name": "Large Venom Sac",
     "profiles": ["Crew Balkany"]
+  },
+  {
+    "name": "Manual of Revenge VI",
+    "profiles": [
+      "Kazan"
+    ]
   }
-
-  
 ]
