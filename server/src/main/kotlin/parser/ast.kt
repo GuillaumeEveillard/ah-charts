@@ -1,6 +1,5 @@
 package parser
 
-import org.apache.commons.lang3.StringEscapeUtils
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 

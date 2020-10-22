@@ -78,8 +78,7 @@ private fun parseAuctionerFile(file: File, language: Language): ParserResult {
         }
     }
 
-    val s = snapshot.toString()
-    val o = Gson().fromJson(s, AuctionatorSnapshot::class.java)
+    val o = Gson().fromJson(snapshot.toString(), AuctionatorSnapshot::class.java)
 
     val timestamp = Instant.ofEpochSecond(o.snapshot_at)
     val items = o.auctions.map { createItem(it, language) }.toSet()
