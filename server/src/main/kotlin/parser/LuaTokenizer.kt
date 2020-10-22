@@ -4,21 +4,21 @@ import java.lang.IllegalArgumentException
 
 sealed class Token
 sealed class ValueToken : Token()
-class StringToken(val s: String) : ValueToken() {
+data class StringToken(val s: String) : ValueToken() {
     override fun toString() = "String<$s>"
 }
-class DoubleToken(val l: Double) : ValueToken()
-class BooleanToken(val b: Boolean) : ValueToken()
-class ObjectStart() : Token() {
+data class DoubleToken(val l: Double) : ValueToken()
+data class BooleanToken(val b: Boolean) : ValueToken()
+object ObjectStart : Token() {
     override fun toString() = "Object start"
 }
-class ObjectEnd : Token() {
+object ObjectEnd : Token() {
     override fun toString() = "Object end"
 }
-class Key(val key: String) : Token() {
+data class Key(val key: String) : Token() {
     override fun toString() = "Key<$key>"
 }
-class Assignment : Token()
+object Assignment : Token()
 
 interface TokenProducer {
     fun produce(c: Char, iterator: ListIterator<Char>): Token?
@@ -26,19 +26,19 @@ interface TokenProducer {
 
 val assignmentTokenProducer : TokenProducer = object : TokenProducer {
     override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
-        return if(c == '=') Assignment() else null
+        return if(c == '=') Assignment else null
     }
 }
 
 val objectStartTokenProducer : TokenProducer = object : TokenProducer {
     override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
-        return if(c == '{') ObjectStart() else null
+        return if(c == '{') ObjectStart else null
     }
 }
 
 val objectEndTokenProducer : TokenProducer = object : TokenProducer {
     override fun produce(c: Char, iterator: ListIterator<Char>): Token? {
-        return if(c == '}') ObjectEnd() else null
+        return if(c == '}') ObjectEnd else null
     }
 }
 
