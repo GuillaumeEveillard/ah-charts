@@ -67,7 +67,7 @@ private fun buildItem(item: Item?, item2: Item): Item {
 }
 
 class ItemAuctions(auctions: List<Auction>) {
-    val auctionsPerTimestamp : Map<Instant, Collection<Auction>> =
+    private val auctionsPerTimestamp : Map<Instant, Collection<Auction>> =
         auctions.groupBy { it.timestamp }
     
 

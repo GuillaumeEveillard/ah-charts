@@ -11,14 +11,6 @@ import java.nio.charset.Charset
 import java.time.Instant
 
 
-fun loadOperationHistory(f: File) : OperationHistory? {
-    return if(f.exists()) {
-        Gson().fromJson(FileReader(f), OperationHistory::class.java)
-    } else {
-        null
-    }
-}
-
 fun loadAndUpdateOperationHistory(dataFolder: File, unitaryFileFolder: File) : OperationHistory {
     val computerName = computerName()
 
@@ -46,19 +38,13 @@ fun loadAndUpdateOperationHistory(dataFolder: File, unitaryFileFolder: File) : O
     return operationHistory
 }
 
-fun computerName(): String {
-    if (System.getProperty("os.name").startsWith("Windows")) {
-        return System.getenv("COMPUTERNAME")
+private fun computerName(): String {
+    return if (System.getProperty("os.name").startsWith("Windows")) {
+        System.getenv("COMPUTERNAME")
     } else {
-        val hostname = System.getenv("HOSTNAME")
-        if (hostname != null) {
-            return hostname
-        } else {
-            throw RuntimeException("Impossible to determine computer name")
-        }
+        System.getenv("HOSTNAME") ?: throw RuntimeException("Impossible to determine computer name")
     }
 }
-
 
 data class OperationHistory(var alreadyIntegratedHash: Set<String>, var operations: List<Operation>) {
     @Transient private val gson = GsonBuilder().setPrettyPrinting().create()
@@ -112,15 +98,6 @@ data class OperationHistory(var alreadyIntegratedHash: Set<String>, var operatio
     }
 }
 
-fun main() {
-    val root = File("D:\\Source\\ah-charts\\data")
-    //val operationOld = root.resolve("database")
-    val operationNew = root.resolve("operation-history")
-    //convertOldAuctionHistoryFilesToNewFormat(operationOld, operationNew)
-
-    loadAndUpdateOperationHistory(root.resolve("operation-history-master.json"), operationNew)
-}
-
 fun saveOperationHistory(dataFolder: File, operations: List<Operation>, timestamp: Instant) {
     val gson = GsonBuilder().setPrettyPrinting().create()
     val json = gson.toJson(operations)
@@ -137,38 +114,10 @@ fun saveOperationHistory(dataFolder: File, operations: List<Operation>, timestam
     println("The "+operations.size+" operations have been save into "+destinationFile.absolutePath)
 }
 
-
-fun convertOldAuctionHistoryFilesToNewFormat(sourceFolder: File, destinationFolder: File) {
-    sourceFolder
-            .listFiles()
-            .filter {it.name.startsWith("auction-history-")}
-            .forEach{
-                convertOldAuctionHistoryFileToNewFormat(it, destinationFolder)
-            }
-}
-
-fun convertOldAuctionHistoryFileToNewFormat(f: File, destinationFolder: File) {
-    val s = f.readText()
-    val hash = Hashing.sha256().hashString(s, Charset.defaultCharset())
-    val hex = BaseEncoding.base16().encode(hash.asBytes()).substring(0, 10)
-//    val hex = String.format("%1$05X",hash.asLong())
-    val newName = f.nameWithoutExtension + "-" + hex + ".json"
-    f.copyTo(destinationFolder.resolve(newName))
-}
-
-
-fun readAllAuctionHistoryFiles(): List<Operation> {
-    val allOperations = mutableSetOf<Operation>()
-    val gson = Gson()
-    File("data/database")
-            .listFiles()
-            .filter {it.name.startsWith("auction-history-")}
-            .forEach {
-                it.readText()
-                val t: TypeToken<List<Operation>> = object : TypeToken<List<Operation>>() {}
-                val op : List<Operation> = gson.fromJson(it.readText(), t.type)
-                allOperations.addAll(op)
-            }
-
-    return allOperations.sortedBy { it.time }
+private fun loadOperationHistory(f: File) : OperationHistory? {
+    return if(f.exists()) {
+        Gson().fromJson(FileReader(f), OperationHistory::class.java)
+    } else {
+        null
+    }
 }
