@@ -2,6 +2,9 @@ import parser.*
 
 enum class Slot {INVENTORY, BANK, MAIL, AUCTION}
 
+/**
+ * Global stock of all items for all characters
+ */
 class Stock {
     private val stocks = mutableMapOf<Long, ItemStock>()
 
@@ -14,6 +17,9 @@ class Stock {
     fun getItemInStock(itemId: Long): List<ItemInStock> = stocks[itemId]?.getItemInStock() ?: emptyList()
 }
 
+/**
+ * Total stock (all characters and slots) for one item
+ */
 class ItemStock {
     private val stock = mutableMapOf<String, MutableMap<Slot, ItemInStock>>()
 
@@ -28,6 +34,9 @@ class ItemStock {
     fun getItemInStock(): List<ItemInStock> = stock.values.map { it.values }.flatten()
 }
 
+/**
+ * The stock of one item for a particular character and a particular slot
+ */
 data class ItemInStock(val item: Long, val quantity: Long, val character: String, val slot: Slot) {
     fun add(quantity: Long) = this.copy(quantity = this.quantity + quantity)
 }

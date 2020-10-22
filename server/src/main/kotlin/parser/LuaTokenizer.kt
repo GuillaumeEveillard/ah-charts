@@ -2,36 +2,23 @@ package parser
 
 import java.lang.IllegalArgumentException
 
-
 sealed class Token
 sealed class ValueToken : Token()
 class StringToken(val s: String) : ValueToken() {
-    override fun toString(): String {
-        return "String<$s>"
-    }
+    override fun toString() = "String<$s>"
 }
 class DoubleToken(val l: Double) : ValueToken()
 class BooleanToken(val b: Boolean) : ValueToken()
 class ObjectStart() : Token() {
-    override fun toString(): String {
-        return "Object start"
-    }
+    override fun toString() = "Object start"
 }
-class ObjectEnd() : Token() {
-    override fun toString(): String {
-        return "Object end"
-    }
+class ObjectEnd : Token() {
+    override fun toString() = "Object end"
 }
 class Key(val key: String) : Token() {
-    override fun toString(): String {
-        return "Key<$key>"
-    }
+    override fun toString() = "Key<$key>"
 }
-class Assignment() : Token()
-
-fun main() {
-    tokenize2("salut = fer { fd }{ [toto]= \"string\" 500= true false 2")
-}
+class Assignment : Token()
 
 interface TokenProducer {
     fun produce(c: Char, iterator: ListIterator<Char>): Token?
@@ -87,9 +74,8 @@ val longTokenProducer : TokenProducer = object : TokenProducer {
     override fun produce(c: Char, iterator: ListIterator<Char>): DoubleToken? {
         return longLogic(c, iterator)
     }
-
-   
 }
+
 private fun longLogic(c: Char, iterator: ListIterator<Char>): DoubleToken? {
     return if (c.isDigit() || c == '-') {
         val s = iterator.asSequence().takeWhile { it.isDigit() || it == '.' }.joinToString("")
@@ -120,7 +106,7 @@ val booleanToken : TokenProducer = object : TokenProducer {
     }
 }
 
-fun tokenize2(s: String) : List<Token> {
+fun tokenize(s: String) : List<Token> {
     val tokens = mutableListOf<Token>()
     val iterator = s.toList().listIterator()
     while(iterator.hasNext()) {

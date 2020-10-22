@@ -23,7 +23,6 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import parser.*
 import java.io.File
-import java.lang.RuntimeException
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -46,6 +45,11 @@ class CliArgs(parser: ArgParser) {
                     help = "Data folder")
             .default("D:\\Source\\ah-charts\\data")
 
+    val account : String by parser.storing(
+            "-a", "--account",
+            help = "Battle.net account")
+            .default("GGYE")
+
     val language by parser.storing(
                     "-l", "--language",
                     help = "WoW language (ENGLISH or FRENCH, default: ENGLISH).")
@@ -62,7 +66,7 @@ fun main(args: Array<String>) {
             val dataFolder = File(dataFolder)
             
             // TSM
-            val tsmFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
+            val tsmFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\$account\\SavedVariables\\TradeSkillMaster.lua")
             backupTsmFile(dataFolder, tsmFilePath, timestamp)
             val ast = readTsmFile(tsmFilePath)
             
@@ -72,7 +76,7 @@ fun main(args: Array<String>) {
             val operationHistory = loadAndUpdateOperationHistory(dataFolder, dataFolder.resolve("operation-history"))
             val auctionHistory = AuctionHistory(operationHistory.operations)
 
-            val auctionatorFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\GGYE\\SavedVariables\\Auctionator.lua")
+            val auctionatorFilePath = wowFolder.resolve("_classic_\\WTF\\Account\\$account\\SavedVariables\\Auctionator.lua")
 
             extractAuctionatorData(auctionatorFilePath, Language.valueOf(language))
 

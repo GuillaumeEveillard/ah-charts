@@ -1,12 +1,9 @@
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import parser.ParserResult
 import java.io.File
-import java.lang.IllegalArgumentException
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.util.*
 import kotlin.math.max
 
 data class Item(val id: Long, val frenchName: String?, val englishName: String?) {

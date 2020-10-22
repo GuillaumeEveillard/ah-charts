@@ -15,21 +15,17 @@ data class ParserResult(val language: Language, val items: Collection<Item>, val
 data class AuctionatorSnapshot(val snapshot_at: Long, val auctions: List<AuctionatorAuction>)
 data class AuctionatorAuction(val q: Long, val s: Long, val b: Long, val i: Long, val n: String)
 
-fun main(args: Array<String>) {
-    val language = Language.valueOf(args[0])
-    val filePath = args[1]
-
-    extractAuctionatorData(File(filePath), language)
-}
-
+/**
+ * Read auctionator file, backup it, extract the relevant data and save them in a json file
+ */
 fun extractAuctionatorData(file: File, language: Language) {
     println("[AUCTIONATOR extraction] [START]")
     
     val result = parseAuctionerFile(file, language)
-    val ss = GsonBuilder().setPrettyPrinting().create().toJson(result)
     val jsonFile = File("data/database/result-${result.timestamp.toEpochMilli()}.json")
     println("The result will be written in ${jsonFile.absolutePath}")
-    jsonFile.writeText(ss)
+    val resultAsString = GsonBuilder().setPrettyPrinting().create().toJson(result)
+    jsonFile.writeText(resultAsString)
     println("Done")
 
     val originalFileBackup = File("data/auctionator/original-${result.timestamp.toEpochMilli()}.lua")

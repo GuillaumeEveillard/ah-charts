@@ -1,6 +1,5 @@
 package parser
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class AstKtTest {
@@ -32,7 +31,7 @@ class AstKtTest {
     },
 }"""
 
-        val tokens = tokenize2(input)
+        val tokens = tokenize(input)
         val ast = buildAst(tokens)
         
         val json = ast.toJson()

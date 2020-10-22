@@ -1,15 +1,9 @@
 package parser
 
-import ItemInStock
 import Slot
 import Stock
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import extractStockFromTsmDb
 import java.io.File
-import java.lang.IllegalArgumentException
-import java.lang.StringBuilder
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.time.Instant
@@ -68,7 +62,7 @@ fun readTsmFile(tsmFile: File): LuaElement {
     println("[TSM File] Read from "+tsmFile.absolutePath)
     val text = readDbSectionOfTsmFile(tsmFile)
 
-    val tokens = tokenize2(text)
+    val tokens = tokenize(text)
     val ast = buildAst(tokens)
     println("[TSM File] Read finished and AST ready")
     return ast
