@@ -24,29 +24,8 @@ class CsvParser<T>(private val builder: ObjectBuilder<T>, private val header: St
     }
 }
 
-
-
-fun main() {
-    val tsmFile = File("C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WTF\\Account\\GGYE\\SavedVariables\\TradeSkillMaster.lua")
-    readStockFromTsm(tsmFile)
-}
-
-
-
 fun readStockFromTsm(tsmFile: File): Stock {
-    println("[TSM extraction] [START]")
-
-    val timestamp = Instant.now()
-    
-//    backupTsmFile(tsmFile, timestamp)
-
     val ast = readTsmFile(tsmFile)
-
-
-    val operations = extractOperations(ast)
-
-//    saveOperationHistory(operations, timestamp)
-
     return extractStockFromTsmDb(ast)
 }
 

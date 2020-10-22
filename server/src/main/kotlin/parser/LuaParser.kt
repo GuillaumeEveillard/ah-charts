@@ -35,6 +35,9 @@ data class KV(val key: String, val value: LuaElement) : LuaElement {
     override fun toJson() =  "{\"key\": \"$key\", \"value\": " + value.toJson() + "}"
 }
 
+/**
+ * Process a list of tokens and produce the AST
+ */
 fun buildAst(tokens: List<Token>): LuaElement {
     val iterator = tokens.iterator()
     if (iterator.next() !is ObjectStart) throw IllegalArgumentException("Expect an object start")

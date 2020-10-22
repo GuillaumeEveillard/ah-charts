@@ -99,7 +99,6 @@ class ItemAuctions(auctions: List<Auction>) {
                 .reduce { acc, pair -> acc.addPrice(pair.price, pair.quantity, n) }
         return if (avgPrice.quantity < n) null else avgPrice.price   
     }
-
 }
 
 data class AveragePrice(val price: Double, val quantity: Long) {
