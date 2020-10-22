@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        kotlin_version = '1.4.10'
+    }
     repositories {
         mavenCentral()
         maven {
@@ -7,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4-M1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.31"
     }
 }

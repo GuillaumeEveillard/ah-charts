@@ -2,7 +2,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "kotlinx-serialization") {
-                useModule("org.jetbrains.kotlin:kotlin-serialization:1.4-M1")
+                useModule("org.jetbrains.kotlin:kotlin-serialization:1.4")
             }
         }
     }
