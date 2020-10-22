@@ -114,7 +114,7 @@ data class OperationHistory(var alreadyIntegratedHash: Set<String>, var operatio
 
 fun main() {
     val root = File("D:\\Source\\ah-charts\\data")
-    val operationOld = root.resolve("database")
+    //val operationOld = root.resolve("database")
     val operationNew = root.resolve("operation-history")
     //convertOldAuctionHistoryFilesToNewFormat(operationOld, operationNew)
 

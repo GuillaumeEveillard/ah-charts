@@ -82,8 +82,6 @@ fun backupTsmFile(dataFolder: File, tsmFile: File, timestamp: Instant) {
     println(" done.")
 }
 
-
-
 private fun readDbSectionOfTsmFile(tsmFile: File): String {
     val lines = tsmFile.readLines()
 
@@ -101,8 +99,6 @@ private fun readDbSectionOfTsmFile(tsmFile: File): String {
     }
     return text.toString()
 }
-
-
 
 data class StockReadingKey(val character: String, val slot: Slot) {
     fun tsmKey() : String {
@@ -166,11 +162,10 @@ fun getObject(ast: LuaElement, key: String) : LuaObject {
 
 class OperationBuilder(private val type: OperationType): ObjectBuilder<Operation?> {
     override fun buildObject(elems: Map<String, String>): Operation? {
-        //itemString,stackSize,quantity,price,otherPlayer,player,time
-        if(elems["source"] != "Auction") {
-            return null
+        return if(elems["source"] != "Auction") {
+            null
         } else {
-            return Operation(
+            Operation(
                     type,
                     elems["itemString"]!!.substringAfter(":").substringBefore(":").toLong(),
                     elems["stackSize"]!!.toLong(),
