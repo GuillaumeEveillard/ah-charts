@@ -15,8 +15,11 @@ dependencies {
     implementation(project(":ui"))
     
     implementation(kotlin("stdlib-jdk8"))
+    
     implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.google.guava:guava:29.0-jre")
+    implementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+    implementation("com.xenomachina:kotlin-argparser:2.0.7")
     
     //ktor
     implementation("io.ktor:ktor-server-netty:$ktor_version")
@@ -31,21 +34,13 @@ dependencies {
     implementation("io.ktor:ktor-client-auth:$ktor_version")
     implementation("io.ktor:ktor-client-auth-jvm:$ktor_version")
     
-    implementation("org.junit.jupiter:junit-jupiter-engine:5.6.2")
-    implementation("org.skyscreamer:jsonassert:1.5.0")
-    implementation("org.apache.commons:commons-text:1.8")
-    implementation("com.xenomachina:kotlin-argparser:2.0.7")
+    testImplementation("org.apache.commons:commons-text:1.8")
+    testImplementation("org.skyscreamer:jsonassert:1.5.0")
 }
 
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
-//        jar {
-//            manifest {
-//                attributes["Main-Class"] = "ServerKt"
-//            }
-////            from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-//        }
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
