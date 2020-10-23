@@ -9,6 +9,9 @@ interface LuaElement {
 }
 
 data class LuaObject(val content: List<LuaElement>) : LuaElement {
+    
+    constructor(vararg elements: LuaElement) : this(elements.toList())
+    
     override fun toJson(): String {
         return "[\n" + content.joinToString(",\n") { it.toJson() } + "]"
     }
@@ -27,7 +30,7 @@ data class StringLiteral(val value: String) : LuaElement {
     override fun toJson() = "\"$value\""
 }
 
-data class LongLiteral(val value: Double) : LuaElement {
+data class DoubleLiteral(val value: Double) : LuaElement {
     override fun toJson() = value.toString()
 }
 
@@ -63,7 +66,7 @@ private fun buildLuaObject(tokens: Iterator<Token>): LuaElement {
                 currentToken = tokens.next()
                 val value = when (currentToken) {
                     is StringToken -> StringLiteral(currentToken.s)
-                    is DoubleToken -> LongLiteral(currentToken.l)
+                    is DoubleToken -> DoubleLiteral(currentToken.l)
                     is BooleanToken -> BooleanLiteral(currentToken.b)
                     is ObjectStart -> buildLuaObject(tokens)
                     else -> throw IllegalArgumentException("Expect a literal or an object")
@@ -72,7 +75,7 @@ private fun buildLuaObject(tokens: Iterator<Token>): LuaElement {
             } else if (currentToken is StringToken) {
                 content.add(StringLiteral(currentToken.s))
             } else if (currentToken is DoubleToken) {
-                content.add(LongLiteral(currentToken.l))
+                content.add(DoubleLiteral(currentToken.l))
             } else {
                 throw IllegalArgumentException("Expect a key, got $currentToken")
             }

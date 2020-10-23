@@ -48,7 +48,7 @@ fun extractStockFromTsmDb(ast: LuaElement): Stock {
         val tsmKey = key.tsmKey()
         val o = getObject(ast, tsmKey)
         getValues(o)
-                .mapValues { if (it.value is LongLiteral) (it.value as LongLiteral).value else null }
+                .mapValues { if (it.value is DoubleLiteral) (it.value as DoubleLiteral).value else null }
                 .filterValues { it != null }
                 .map {
                     ItemInStock(

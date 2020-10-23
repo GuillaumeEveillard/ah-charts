@@ -51,4 +51,14 @@ internal class LuaTokenizerTest {
         val tokens = tokenize("""{ ["key"] = { ["sub-key"] = "value" } }""")
         Assertions.assertEquals(listOf(ObjectStart, Key("key"), Assignment, ObjectStart, Key("sub-key"), Assignment, StringToken("value"), ObjectEnd, ObjectEnd), tokens)
     }
+
+    @Test
+    fun `object with list`() {
+        val tokens = tokenize("""{ ["key"] = { { ["sub-key-1"] = "value1" },  { ["sub-key-2"] = 2 }}""")
+        Assertions.assertEquals(listOf(ObjectStart, 
+            Key("key"), Assignment, ObjectStart, 
+                ObjectStart, Key("sub-key-1"), Assignment, StringToken("value1"), ObjectEnd, 
+                ObjectStart, Key("sub-key-2"), Assignment, DoubleToken(2.0), ObjectEnd,
+            ObjectEnd), tokens)
+    }
 }
