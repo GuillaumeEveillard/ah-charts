@@ -393,5 +393,17 @@
   {
     "name": "Moustache de Khadgar",
     "profiles": ["Kazan"]
+  },
+  {
+    "name": "Aveuglette",
+    "profiles": ["Kazan"]
+  },
+  {
+    "name": "Four of Beasts",
+    "profiles": ["GGYE"]
+  },
+  {
+    "name": "Freezing Band",
+    "profiles": ["GGYE"]
   }
 ]
