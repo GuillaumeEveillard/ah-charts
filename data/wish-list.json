@@ -383,8 +383,15 @@
   },
   {
     "name": "Manual of Revenge VI",
-    "profiles": [
-      "Kazan"
-    ]
+    "profiles": ["Kazan"]
+  },
+  {
+    "name": "Hivernale",
+    "profiles": ["Kazan"],
+    "buyPrice": 20000
+  },
+  {
+    "name": "Moustache de Khadgar",
+    "profiles": ["Kazan"]
   }
 ]
