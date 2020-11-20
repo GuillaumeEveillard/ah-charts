@@ -23,6 +23,8 @@
     "193FEE3CDC",
     "E6CC5846E3",
     "C624408D7E",
+    "091B69B053",
+    "ECF0B5E4A7",
     "BFF9283FFB",
     "649E203A81",
     "CAF5CE2698",
@@ -14552,6 +14554,32 @@
       "player": "Allocompo",
       "time": {
         "seconds": 1605741934,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 14342,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 207860,
+      "otherPlayer": "Deathkiss",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1605811970,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 14342,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 205200,
+      "otherPlayer": "Melond",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1605866411,
         "nanos": 0
       }
     }
