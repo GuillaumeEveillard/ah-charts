@@ -1,0 +1,40 @@
+Greater Arcane Protection Potion (5) – Gothik
+- Poussière de rêve
+- Feuillerêve
+
+Greater Fire Protection Potion (10) – Faerlina, Four Horsemen
+- Feu élémentaire
+- Feuillerêve
+
+Greater Frost Protection Potion (10) – Sapphiron, Kel’Thuzad
+- Eau élémentaire
+- Feuillerêve
+
+
+Greater Nature Protection Potion (5) – Thaddius
+- Terre élémentaire
+- Feuillerêve
+
+Greater Shadow Protection Potion (5) – Loatheb
+- Huile des ténèbres
+	- Pâlerette (4)
+	- Tombeline (4)
+- Feuillerêve
+
+
+Potion de protection contre le Feu
+- Petit sac de flammes
+- Huile de feu
+	- Lutjan de nagefeu (2)
+
+Potion de protection contre la Nature
+- Vietérule
+- Etouffante
+
+Potion de protection contre le Givre
+- Hivernale
+- Dorépine
+
+Potion de protection contre l'Ombre
+- Tombeline
+- Sang-royal
