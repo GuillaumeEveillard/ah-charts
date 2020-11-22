@@ -405,5 +405,70 @@
   {
     "name": "Freezing Band",
     "profiles": ["GGYE"]
+  },
+  {
+    "name": "Cristal de nexus",
+    "profiles": ["GGYE"]
+  },
+  {
+    "name": "Feuillerêve",
+    "comment": "5 grosse popo",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Poussière de rêve",
+    "comment": "1 pour Greater Arcane Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Greater Arcane Protection Potion",
+    "comment": "Feuillerêve, Poussière de rêve",
+    "profiles": ["Potion resist"]
+  }
+,
+  {
+    "name": "Feu élémentaire",
+    "comment": "1 pour Greater Fire Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Greater Fire Protection Potion",
+    "comment": "Feuillerêve, Feu élémentaire",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Eau élémentaire",
+    "comment": "1 pour Greater Frost Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Greater Frost Protection Potion",
+    "comment": "Feuillerêve, Eau élémentaire",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Terre élémentaire",
+    "comment": "1 pour Greater Nature Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Greater Nature Protection Potion",
+    "comment": "Feuillerêve, Terre élémentaire",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Pâlerette",
+    "comment": "4 pour Greater Shadow Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Tombeline",
+    "comment": "4 pour Greater Shadow Protection Potion",
+    "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Greater Shadow Protection Potion",
+    "comment": "Feuillerêve, Pâlerette(4), Tombeline(4)",
+    "profiles": ["Potion resist"]
   }
 ]

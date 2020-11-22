@@ -1,6 +1,7 @@
 {
   "alreadyIntegratedHash": [
     "4EC574FC54",
+    "C02B16CBD8",
     "F4786A29E6",
     "0474C2C6B7",
     "E1937E5EA1",
@@ -24,6 +25,8 @@
     "193FEE3CDC",
     "E6CC5846E3",
     "C624408D7E",
+    "091B69B053",
+    "ECF0B5E4A7",
     "BFF9283FFB",
     "649E203A81",
     "CAF5CE2698",
@@ -14704,11 +14707,50 @@
       "item": 14342,
       "stackSize": 1,
       "quantity": 2,
+      "price": 207860,
+      "otherPlayer": "Deathkiss",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1605811970,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 14342,
+      "stackSize": 1,
+      "quantity": 1,
+      "price": 205200,
+      "otherPlayer": "Melond",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1605866411,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 14342,
+      "stackSize": 1,
+      "quantity": 2,
       "price": 195225,
       "otherPlayer": "Darck",
       "player": "Allocompo",
       "time": {
         "seconds": 1605894925,
+        "nanos": 0
+      }
+    },
+    {
+      "type": "SELL",
+      "item": 14342,
+      "stackSize": 1,
+      "quantity": 2,
+      "price": 193230,
+      "otherPlayer": "Arm",
+      "player": "Allocompo",
+      "time": {
+        "seconds": 1605968001,
         "nanos": 0
       }
     }
