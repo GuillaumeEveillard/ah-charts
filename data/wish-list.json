@@ -470,5 +470,65 @@
     "name": "Greater Shadow Protection Potion",
     "comment": "Feuillerêve, Pâlerette(4), Tombeline(4)",
     "profiles": ["Potion resist"]
+  },
+  {
+    "name": "Petit sac de flammes",
+    "comment": "1 pour Potion de protection contre le Feu",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Lutjan de nagefeu",
+    "comment": "2 pour Potion de protection contre le Feu",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Potion de protection contre le Feu",
+    "comment": "Petit sac de flammes, Lutjan de nagefeu (2)",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Vietérule",
+    "comment": "1 pour Potion de protection contre la Nature",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Etouffante",
+    "comment": "1 pour Potion de protection contre la Nature",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Potion de protection contre la Nature",
+    "comment": "Vietérule, Etouffante",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Hivernale",
+    "comment": "1 pour Potion de protection contre le Givre",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Dorépine",
+    "comment": "1 pour Potion de protection contre le Givre",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Potion de protection contre le Givre",
+    "comment": "Hivernale, Dorépine",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Tombeline",
+    "comment": "1 pour Potion de protection contre l'Ombre",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Sang-royal",
+    "comment": "1 pour Potion de protection contre l'Ombre",
+    "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Potion de protection contre l'Ombre",
+    "comment": "Tombeline, Sang-royal",
+    "profiles": ["Petite potion resist"]
   }
 ]
