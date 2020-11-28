@@ -530,5 +530,24 @@
     "name": "Potion de protection contre l'Ombre",
     "comment": "Tombeline, Sang-royal",
     "profiles": ["Petite potion resist"]
+  },
+  {
+    "name": "Manuel de Frappe héroïque IX",
+    "profiles": ["Kazan"]
+  },
+  {
+    "name": "Peau robuste",
+    "profiles": ["Kazan"],
+    "buyPrice": 55000
+  },
+  {
+    "name": "Sel de Fonderoc raffiné",
+    "profiles": ["Kazan"],
+    "buyPrice": 400000
+  },
+  {
+    "name": "Peau robuste traitée",
+    "profiles": ["Kazan"],
+    "buyPrice": 450000
   }
 ]
