@@ -549,5 +549,18 @@
     "name": "Peau robuste traitée",
     "profiles": ["Kazan"],
     "buyPrice": 450000
+  },
+  {
+    "name": "Essence d'air",
+    "profiles": ["Kazan"],
+    "buyPrice": 450000
+  },
+  {
+    "name": "Essence d'eau",
+    "profiles": ["Kazan"] 
+  },
+  {
+    "name": "Pyro-côtelettes de chimaerok à la Dirge",
+    "profiles": ["Kazan"]
   }
 ]
